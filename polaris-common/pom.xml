@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>polaris-admin</artifactId>
+        <groupId>com.polaris</groupId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <modules>
+        <module>polaris-common-bom</module>
+        <module>polaris-common-social</module>
+        <module>polaris-common-core</module>
+        <module>polaris-common-doc</module>
+        <module>polaris-common-excel</module>
+        <module>polaris-common-idempotent</module>
+        <module>polaris-common-job</module>
+        <module>polaris-common-log</module>
+        <module>polaris-common-mail</module>
+        <module>polaris-common-mybatis</module>
+        <module>polaris-common-oss</module>
+        <module>polaris-common-ratelimiter</module>
+        <module>polaris-common-redis</module>
+        <module>polaris-common-satoken</module>
+        <module>polaris-common-security</module>
+        <module>polaris-common-sms</module>
+        <module>polaris-common-web</module>
+        <module>polaris-common-translation</module>
+        <module>polaris-common-sensitive</module>
+        <module>polaris-common-json</module>
+        <module>polaris-common-encrypt</module>
+        <module>polaris-common-tenant</module>
+        <module>polaris-common-websocket</module>
+        <module>polaris-common-sse</module>
+    </modules>
+
+    <artifactId>polaris-common</artifactId>
+    <packaging>pom</packaging>
+
+    <description>
+        common 通用模块
+    </description>
+
+</project>
