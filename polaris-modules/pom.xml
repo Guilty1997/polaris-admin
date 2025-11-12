@@ -22,7 +22,7 @@
     <packaging>pom</packaging>
 
     <description>
-        ruoyi-modules 业务模块
+        polaris-modules 业务模块
     </description>
 
 </project>

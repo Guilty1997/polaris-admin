@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.dromara.workflow.mapper.FlwInstanceMapper">
-    <resultMap type="org.dromara.workflow.domain.vo.FlowInstanceVo" id="FlowInstanceResult">
+<mapper namespace="com.polaris.workflow.mapper.FlwInstanceMapper">
+    <resultMap type="com.polaris.workflow.domain.vo.FlowInstanceVo" id="FlowInstanceResult">
     </resultMap>
 
     <select id="selectInstanceList" resultMap="FlowInstanceResult">
@@ -33,7 +33,7 @@
         from flow_instance fi
                  left join flow_definition fd on fi.definition_id = fd.id
                  left join flow_instance_biz_ext biz on biz.instance_id = fi.id
-                ${ew.getCustomSqlSegment}
+            ${ew.getCustomSqlSegment}
     </select>
 
 </mapper>

@@ -25,7 +25,7 @@ import me.zhyd.oauth.utils.UrlBuilder;
 public abstract class AbstractAuthWeChatEnterpriseRequest extends AuthDefaultRequest {
 
     public AbstractAuthWeChatEnterpriseRequest(AuthConfig config, AuthSource source) {
-        super(config,source);
+        super(config, source);
     }
 
 

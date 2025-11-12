@@ -1,4 +1,4 @@
-org.dromara.common.core.config.ApplicationConfig
-org.dromara.common.core.config.ThreadPoolConfig
-org.dromara.common.core.config.ValidatorConfig
-org.dromara.common.core.utils.SpringUtils
+com.polaris.common.core.config.ApplicationConfig
+com.polaris.common.core.config.ThreadPoolConfig
+com.polaris.common.core.config.ValidatorConfig
+com.polaris.common.core.utils.SpringUtils

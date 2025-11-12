@@ -1,1 +1,1 @@
-org.dromara.common.sse.config.SseAutoConfiguration
+com.polaris.common.sse.config.SseAutoConfiguration

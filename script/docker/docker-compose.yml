@@ -110,7 +110,7 @@ services:
       # 配置文件
       - /docker/server1/logs/:/ruoyi/server/logs/
       # skywalking 探针
-#      - /docker/skywalking/agent/:/ruoyi/skywalking/agent
+    #      - /docker/skywalking/agent/:/ruoyi/skywalking/agent
     privileged: true
     network_mode: "host"
 
@@ -126,7 +126,7 @@ services:
       # 配置文件
       - /docker/server2/logs/:/ruoyi/server/logs/
       # skywalking 探针
-#      - /docker/skywalking/agent/:/ruoyi/skywalking/agent
+    #      - /docker/skywalking/agent/:/ruoyi/skywalking/agent
     privileged: true
     network_mode: "host"
 

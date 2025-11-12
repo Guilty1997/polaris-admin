@@ -29,8 +29,10 @@ COMMENT ON COLUMN sj_namespace.create_dt IS '创建时间';
 COMMENT ON COLUMN sj_namespace.update_dt IS '修改时间';
 COMMENT ON TABLE sj_namespace IS '命名空间';
 
-INSERT INTO sj_namespace VALUES (1, 'Development', 'dev', '', 0, now(), now());
-INSERT INTO sj_namespace VALUES (2, 'Production', 'prod', '', 0, now(), now());
+INSERT INTO sj_namespace
+VALUES (1, 'Development', 'dev', '', 0, now(), now());
+INSERT INTO sj_namespace
+VALUES (2, 'Production', 'prod', '', 0, now(), now());
 
 -- sj_group_config
 CREATE TABLE sj_group_config
@@ -65,8 +67,10 @@ COMMENT ON COLUMN sj_group_config.create_dt IS '创建时间';
 COMMENT ON COLUMN sj_group_config.update_dt IS '修改时间';
 COMMENT ON TABLE sj_group_config IS '组配置';
 
-INSERT INTO sj_group_config VALUES (1, 'dev', 'ruoyi_group', '', 'SJ_cKqBTPzCsWA3VyuCfFoccmuIEGXjr5KT', 1, 1, 0, 1, 1,  now(), now());
-INSERT INTO sj_group_config VALUES (2, 'prod', 'ruoyi_group', '', 'SJ_cKqBTPzCsWA3VyuCfFoccmuIEGXjr5KT', 1, 1, 0, 1, 1,  now(), now());
+INSERT INTO sj_group_config
+VALUES (1, 'dev', 'ruoyi_group', '', 'SJ_cKqBTPzCsWA3VyuCfFoccmuIEGXjr5KT', 1, 1, 0, 1, 1, now(), now());
+INSERT INTO sj_group_config
+VALUES (2, 'prod', 'ruoyi_group', '', 'SJ_cKqBTPzCsWA3VyuCfFoccmuIEGXjr5KT', 1, 1, 0, 1, 1, now(), now());
 
 -- sj_notify_config
 CREATE TABLE sj_notify_config
@@ -237,7 +241,7 @@ CREATE TABLE sj_retry_task
     task_status      smallint     NOT NULL DEFAULT 1,
     task_type        smallint     NOT NULL DEFAULT 1,
     operation_reason smallint     NOT NULL DEFAULT 0,
-    client_info      varchar(128) NULL     DEFAULT NULL,
+    client_info      varchar(128) NULL DEFAULT NULL,
     create_dt        timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_dt        timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -309,8 +313,8 @@ CREATE TABLE sj_retry_scene_config
     cb_trigger_type     smallint     NOT NULL DEFAULT 1,
     cb_max_count        int          NOT NULL DEFAULT 16,
     cb_trigger_interval varchar(16)  NOT NULL DEFAULT '',
-    owner_id            bigint       NULL     DEFAULT NULL,
-    labels              varchar(512) NULL     DEFAULT '',
+    owner_id            bigint       NULL DEFAULT NULL,
+    labels              varchar(512) NULL DEFAULT '',
     description         varchar(256) NOT NULL DEFAULT '',
     create_dt           timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_dt           timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -353,8 +357,8 @@ CREATE TABLE sj_server_node
     host_port    int          NOT NULL,
     expire_at    timestamp    NOT NULL,
     node_type    smallint     NOT NULL,
-    ext_attrs    varchar(256) NULL     DEFAULT '',
-    labels       varchar(512) NULL     DEFAULT '',
+    ext_attrs    varchar(256) NULL DEFAULT '',
+    labels       varchar(512) NULL DEFAULT '',
     create_dt    timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_dt    timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -447,14 +451,14 @@ CREATE TABLE sj_job
     namespace_id     varchar(64)  NOT NULL DEFAULT '764d604ec6fc45f68cd92514c40e9e1a',
     group_name       varchar(64)  NOT NULL,
     job_name         varchar(64)  NOT NULL,
-    args_str         text         NULL     DEFAULT NULL,
+    args_str         text         NULL DEFAULT NULL,
     args_type        smallint     NOT NULL DEFAULT 1,
     next_trigger_at  bigint       NOT NULL,
     job_status       smallint     NOT NULL DEFAULT 1,
     task_type        smallint     NOT NULL DEFAULT 1,
     route_key        smallint     NOT NULL DEFAULT 4,
     executor_type    smallint     NOT NULL DEFAULT 1,
-    executor_info    varchar(255) NULL     DEFAULT NULL,
+    executor_info    varchar(255) NULL DEFAULT NULL,
     trigger_type     smallint     NOT NULL,
     trigger_interval varchar(255) NOT NULL,
     block_strategy   smallint     NOT NULL DEFAULT 1,
@@ -465,10 +469,10 @@ CREATE TABLE sj_job
     bucket_index     int          NOT NULL DEFAULT 0,
     resident         smallint     NOT NULL DEFAULT 0,
     notify_ids       varchar(128) NOT NULL DEFAULT '',
-    owner_id         bigint       NULL     DEFAULT NULL,
-    labels           varchar(512) NULL     DEFAULT '',
+    owner_id         bigint       NULL DEFAULT NULL,
+    labels           varchar(512) NULL DEFAULT '',
     description      varchar(256) NOT NULL DEFAULT '',
-    ext_attrs        varchar(256) NULL     DEFAULT '',
+    ext_attrs        varchar(256) NULL DEFAULT '',
     deleted          smallint     NOT NULL DEFAULT 0,
     create_dt        timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_dt        timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -509,7 +513,9 @@ COMMENT ON COLUMN sj_job.create_dt IS '创建时间';
 COMMENT ON COLUMN sj_job.update_dt IS '修改时间';
 COMMENT ON TABLE sj_job IS '任务信息';
 
-INSERT INTO sj_job VALUES (1, 'dev', 'ruoyi_group', 'demo-job', null, 1, 1710344035622, 1, 1, 4, 1, 'testJobExecutor', 2, '60', 1, 60, 3, 1, 1, 116, 0, '', 1, '', '', '', 0, now(), now());
+INSERT INTO sj_job
+VALUES (1, 'dev', 'ruoyi_group', 'demo-job', null, 1, 1710344035622, 1, 1, 4, 1, 'testJobExecutor', 2, '60', 1, 60, 3,
+        1, 1, 116, 0, '', 1, '', '', '', 0, now(), now());
 
 -- sj_job_log_message
 CREATE TABLE sj_job_log_message
@@ -523,7 +529,7 @@ CREATE TABLE sj_job_log_message
     message       text         NOT NULL,
     log_num       int          NOT NULL DEFAULT 1,
     real_time     bigint       NOT NULL DEFAULT 0,
-    ext_attrs     varchar(256) NULL     DEFAULT '',
+    ext_attrs     varchar(256) NULL DEFAULT '',
     create_dt     timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -555,15 +561,15 @@ CREATE TABLE sj_job_task
     parent_id      bigint       NOT NULL DEFAULT 0,
     task_status    smallint     NOT NULL DEFAULT 0,
     retry_count    int          NOT NULL DEFAULT 0,
-    mr_stage       smallint     NULL     DEFAULT NULL,
+    mr_stage       smallint     NULL DEFAULT NULL,
     leaf           smallint     NOT NULL DEFAULT '1',
     task_name      varchar(255) NOT NULL DEFAULT '',
-    client_info    varchar(128) NULL     DEFAULT NULL,
-    wf_context     text         NULL     DEFAULT NULL,
+    client_info    varchar(128) NULL DEFAULT NULL,
+    wf_context     text         NULL DEFAULT NULL,
     result_message text         NOT NULL,
-    args_str       text         NULL     DEFAULT NULL,
+    args_str       text         NULL DEFAULT NULL,
     args_type      smallint     NOT NULL DEFAULT 1,
-    ext_attrs      varchar(256) NULL     DEFAULT '',
+    ext_attrs      varchar(256) NULL DEFAULT '',
     create_dt      timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_dt      timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -608,7 +614,7 @@ CREATE TABLE sj_job_task_batch
     execution_at            bigint       NOT NULL DEFAULT 0,
     system_task_type        smallint     NOT NULL DEFAULT 3,
     parent_id               varchar(64)  NOT NULL DEFAULT '',
-    ext_attrs               varchar(256) NULL     DEFAULT '',
+    ext_attrs               varchar(256) NULL DEFAULT '',
     deleted                 smallint     NOT NULL DEFAULT 0,
     create_dt               timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_dt               timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -725,13 +731,13 @@ CREATE TABLE sj_workflow
     block_strategy   smallint     NOT NULL DEFAULT 1,
     executor_timeout int          NOT NULL DEFAULT 0,
     description      varchar(256) NOT NULL DEFAULT '',
-    flow_info        text         NULL     DEFAULT NULL,
-    wf_context       text         NULL     DEFAULT NULL,
+    flow_info        text         NULL DEFAULT NULL,
+    wf_context       text         NULL DEFAULT NULL,
     notify_ids       varchar(128) NOT NULL DEFAULT '',
     bucket_index     int          NOT NULL DEFAULT 0,
     version          int          NOT NULL,
-    owner_id         bigint       NULL     DEFAULT NULL,
-    ext_attrs        varchar(256) NULL     DEFAULT '',
+    owner_id         bigint       NULL DEFAULT NULL,
+    ext_attrs        varchar(256) NULL DEFAULT '',
     deleted          smallint     NOT NULL DEFAULT 0,
     create_dt        timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_dt        timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -777,9 +783,9 @@ CREATE TABLE sj_workflow_node
     fail_strategy        smallint     NOT NULL DEFAULT 1,
     workflow_node_status smallint     NOT NULL DEFAULT 1,
     priority_level       int          NOT NULL DEFAULT 1,
-    node_info            text         NULL     DEFAULT NULL,
+    node_info            text         NULL DEFAULT NULL,
     version              int          NOT NULL,
-    ext_attrs            varchar(256) NULL     DEFAULT '',
+    ext_attrs            varchar(256) NULL DEFAULT '',
     deleted              smallint     NOT NULL DEFAULT 0,
     create_dt            timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_dt            timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -816,10 +822,10 @@ CREATE TABLE sj_workflow_task_batch
     workflow_id       bigint       NOT NULL,
     task_batch_status smallint     NOT NULL DEFAULT 0,
     operation_reason  smallint     NOT NULL DEFAULT 0,
-    flow_info         text         NULL     DEFAULT NULL,
-    wf_context        text         NULL     DEFAULT NULL,
+    flow_info         text         NULL DEFAULT NULL,
+    wf_context        text         NULL DEFAULT NULL,
     execution_at      bigint       NOT NULL DEFAULT 0,
-    ext_attrs         varchar(256) NULL     DEFAULT '',
+    ext_attrs         varchar(256) NULL DEFAULT '',
     version           int          NOT NULL DEFAULT 1,
     deleted           smallint     NOT NULL DEFAULT 0,
     create_dt         timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,

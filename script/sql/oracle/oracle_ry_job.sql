@@ -32,8 +32,10 @@ COMMENT ON COLUMN sj_namespace.create_dt IS '创建时间';
 COMMENT ON COLUMN sj_namespace.update_dt IS '修改时间';
 COMMENT ON TABLE sj_namespace IS '命名空间';
 
-INSERT INTO sj_namespace(name, unique_id, description, deleted, create_dt, update_dt) VALUES ('Development', 'dev', '', 0, sysdate, sysdate);
-INSERT INTO sj_namespace(name, unique_id, description, deleted, create_dt, update_dt) VALUES ('Production', 'prod', '', 0, sysdate, sysdate);
+INSERT INTO sj_namespace(name, unique_id, description, deleted, create_dt, update_dt)
+VALUES ('Development', 'dev', '', 0, sysdate, sysdate);
+INSERT INTO sj_namespace(name, unique_id, description, deleted, create_dt, update_dt)
+VALUES ('Production', 'prod', '', 0, sysdate, sysdate);
 
 -- sj_group_config
 CREATE TABLE sj_group_config
@@ -71,8 +73,12 @@ COMMENT ON COLUMN sj_group_config.create_dt IS '创建时间';
 COMMENT ON COLUMN sj_group_config.update_dt IS '修改时间';
 COMMENT ON TABLE sj_group_config IS '组配置';
 
-INSERT INTO sj_group_config (namespace_id, group_name, description, token, group_status, version, group_partition, id_generator_mode, init_scene, create_dt, update_dt) VALUES ('dev', 'ruoyi_group', '', 'SJ_cKqBTPzCsWA3VyuCfFoccmuIEGXjr5KT', 1, 1, 0, 1, 1,  sysdate, sysdate);
-INSERT INTO sj_group_config (namespace_id, group_name, description, token, group_status, version, group_partition, id_generator_mode, init_scene, create_dt, update_dt) VALUES ('prod', 'ruoyi_group', '', 'SJ_cKqBTPzCsWA3VyuCfFoccmuIEGXjr5KT', 1, 1, 0, 1, 1,  sysdate, sysdate);
+INSERT INTO sj_group_config (namespace_id, group_name, description, token, group_status, version, group_partition,
+                             id_generator_mode, init_scene, create_dt, update_dt)
+VALUES ('dev', 'ruoyi_group', '', 'SJ_cKqBTPzCsWA3VyuCfFoccmuIEGXjr5KT', 1, 1, 0, 1, 1, sysdate, sysdate);
+INSERT INTO sj_group_config (namespace_id, group_name, description, token, group_status, version, group_partition,
+                             id_generator_mode, init_scene, create_dt, update_dt)
+VALUES ('prod', 'ruoyi_group', '', 'SJ_cKqBTPzCsWA3VyuCfFoccmuIEGXjr5KT', 1, 1, 0, 1, 1, sysdate, sysdate);
 
 -- sj_notify_config
 CREATE TABLE sj_notify_config
@@ -551,7 +557,12 @@ COMMENT ON COLUMN sj_job.create_dt IS '创建时间';
 COMMENT ON COLUMN sj_job.update_dt IS '修改时间';
 COMMENT ON TABLE sj_job IS '任务信息';
 
-INSERT INTO sj_job(namespace_id, group_name, job_name, args_str, args_type, next_trigger_at, job_status, task_type, route_key, executor_type, executor_info, trigger_type, trigger_interval, block_strategy,executor_timeout, max_retry_times, parallel_num, retry_interval, bucket_index, resident, notify_ids, owner_id, labels, description, ext_attrs, deleted, create_dt, update_dt) VALUES ('dev', 'ruoyi_group', 'demo-job', NULL, 1, 1710344035622, 1, 1, 4, 1, 'testJobExecutor', 2, '60', 1, 60, 3, 1, 1, 116, 0, '', 1, '','', '', 0, sysdate, sysdate);
+INSERT INTO sj_job(namespace_id, group_name, job_name, args_str, args_type, next_trigger_at, job_status, task_type,
+                   route_key, executor_type, executor_info, trigger_type, trigger_interval, block_strategy,
+                   executor_timeout, max_retry_times, parallel_num, retry_interval, bucket_index, resident, notify_ids,
+                   owner_id, labels, description, ext_attrs, deleted, create_dt, update_dt)
+VALUES ('dev', 'ruoyi_group', 'demo-job', NULL, 1, 1710344035622, 1, 1, 4, 1, 'testJobExecutor', 2, '60', 1, 60, 3, 1,
+        1, 116, 0, '', 1, '', '', '', 0, sysdate, sysdate);
 
 -- sj_job_log_message
 CREATE TABLE sj_job_log_message

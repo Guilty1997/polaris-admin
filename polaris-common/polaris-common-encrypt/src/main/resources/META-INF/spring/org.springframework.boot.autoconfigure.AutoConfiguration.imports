@@ -1,3 +1,3 @@
-org.dromara.common.encrypt.config.EncryptorAutoConfiguration
-org.dromara.common.encrypt.config.ApiDecryptAutoConfiguration
+com.polaris.common.encrypt.config.EncryptorAutoConfiguration
+com.polaris.common.encrypt.config.ApiDecryptAutoConfiguration
 

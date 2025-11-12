@@ -2,10 +2,10 @@ package ${packageName}.service;
 
 import ${packageName}.domain.vo.${ClassName}Vo;
 import ${packageName}.domain.bo.${ClassName}Bo;
-#if($table.crud)
-import org.dromara.common.mybatis.core.page.TableDataInfo;
-import org.dromara.common.mybatis.core.page.PageQuery;
-#end
+    #if($table.crud)
+    import com.polaris.common.mybatis.core.page.TableDataInfo;
+    import com.polaris.common.mybatis.core.page.PageQuery;
+    #end
 
 import java.util.Collection;
 import java.util.List;
@@ -24,18 +24,18 @@ public interface I${ClassName}Service {
      * @param ${pkColumn.javaField} 主键
      * @return ${functionName}
      */
-    ${ClassName}Vo queryById(${pkColumn.javaType} ${pkColumn.javaField});
+        ${ClassName}Vo queryById(${pkColumn.javaType} ${pkColumn.javaField});
 
-#if($table.crud)
-    /**
-     * 分页查询${functionName}列表
-     *
-     * @param bo        查询条件
-     * @param pageQuery 分页参数
-     * @return ${functionName}分页列表
-     */
-    TableDataInfo<${ClassName}Vo> queryPageList(${ClassName}Bo bo, PageQuery pageQuery);
-#end
+    #if($table.crud)
+        /**
+         * 分页查询${functionName}列表
+         *
+         * @param bo        查询条件
+         * @param pageQuery 分页参数
+         * @return ${functionName}分页列表
+         */
+        TableDataInfo<${ClassName}Vo> queryPageList(${ClassName}Bo bo, PageQuery pageQuery);
+    #end
 
     /**
      * 查询符合条件的${functionName}列表

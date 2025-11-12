@@ -1,2 +1,2 @@
-org.dromara.common.security.handler.AllUrlHandler
-org.dromara.common.security.config.SecurityConfig
+com.polaris.common.security.handler.AllUrlHandler
+com.polaris.common.security.config.SecurityConfig

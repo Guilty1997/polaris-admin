@@ -1,4 +1,5 @@
-ALTER TABLE sys_logininfor ADD client_key nvarchar(32) DEFAULT '' NULL
+ALTER TABLE sys_logininfor
+    ADD client_key nvarchar(32) DEFAULT '' NULL
 GO
 
 EXEC sp_addextendedproperty
@@ -8,7 +9,8 @@ EXEC sp_addextendedproperty
     'COLUMN', N'client_key'
 GO
 
-ALTER TABLE sys_logininfor ADD device_type nvarchar(32) DEFAULT '' NULL
+ALTER TABLE sys_logininfor
+    ADD device_type nvarchar(32) DEFAULT '' NULL
 GO
 
 EXEC sp_addextendedproperty
