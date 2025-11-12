@@ -1,4 +1,4 @@
-package org.dromara.web.listener;
+package org.dromara.auth.listener;
 
 import cn.dev33.satoken.listener.SaTokenListener;
 import cn.dev33.satoken.stp.StpUtil;
@@ -8,6 +8,7 @@ import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.auth.service.SysLoginService;
 import org.dromara.common.core.constant.CacheConstants;
 import org.dromara.common.core.constant.Constants;
 import org.dromara.common.core.domain.dto.UserOnlineDTO;
@@ -19,7 +20,6 @@ import org.dromara.common.log.event.LogininforEvent;
 import org.dromara.common.redis.utils.RedisUtils;
 import org.dromara.common.satoken.utils.LoginHelper;
 import org.dromara.common.tenant.helper.TenantHelper;
-import org.dromara.web.service.SysLoginService;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
@@ -57,7 +57,7 @@ public class UserActionListener implements SaTokenListener {
         dto.setDeviceType(loginParameter.getDeviceType());
         dto.setDeptName((String) loginParameter.getExtra(LoginHelper.DEPT_NAME_KEY));
         TenantHelper.dynamic(tenantId, () -> {
-            if(loginParameter.getTimeout() == -1) {
+            if (loginParameter.getTimeout() == -1) {
                 RedisUtils.setCacheObject(CacheConstants.ONLINE_TOKEN_KEY + tokenValue, dto);
             } else {
                 RedisUtils.setCacheObject(CacheConstants.ONLINE_TOKEN_KEY + tokenValue, dto, Duration.ofSeconds(loginParameter.getTimeout()));

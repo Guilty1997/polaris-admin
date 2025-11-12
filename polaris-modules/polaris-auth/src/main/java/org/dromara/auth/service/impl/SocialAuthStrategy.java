@@ -1,4 +1,4 @@
-package org.dromara.web.service.impl;
+package org.dromara.auth.service.impl;
 
 import cn.dev33.satoken.stp.StpUtil;
 import cn.dev33.satoken.stp.parameter.SaLoginParameter;
@@ -8,6 +8,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.zhyd.oauth.model.AuthResponse;
 import me.zhyd.oauth.model.AuthUser;
+import org.dromara.auth.service.IAuthStrategy;
+import org.dromara.auth.service.SysLoginService;
+import org.dromara.auth.vo.LoginVo;
 import org.dromara.common.core.constant.SystemConstants;
 import org.dromara.common.core.domain.model.LoginUser;
 import org.dromara.common.core.domain.model.SocialLoginBody;
@@ -25,9 +28,6 @@ import org.dromara.system.domain.vo.SysSocialVo;
 import org.dromara.system.domain.vo.SysUserVo;
 import org.dromara.system.mapper.SysUserMapper;
 import org.dromara.system.service.ISysSocialService;
-import org.dromara.web.domain.vo.LoginVo;
-import org.dromara.web.service.IAuthStrategy;
-import org.dromara.web.service.SysLoginService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -51,16 +51,16 @@ public class SocialAuthStrategy implements IAuthStrategy {
     /**
      * 登录-第三方授权登录
      *
-     * @param body     登录信息
-     * @param client   客户端信息
+     * @param body   登录信息
+     * @param client 客户端信息
      */
     @Override
     public LoginVo login(String body, SysClientVo client) {
         SocialLoginBody loginBody = JsonUtils.parseObject(body, SocialLoginBody.class);
         ValidatorUtils.validate(loginBody);
         AuthResponse<AuthUser> response = SocialUtils.loginAuth(
-                loginBody.getSource(), loginBody.getSocialCode(),
-                loginBody.getSocialState(), socialProperties);
+            loginBody.getSource(), loginBody.getSocialCode(),
+            loginBody.getSocialState(), socialProperties);
         if (!response.ok()) {
             throw new ServiceException(response.getMsg());
         }

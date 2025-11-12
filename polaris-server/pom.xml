@@ -47,27 +47,12 @@
 
         <dependency>
             <groupId>com.polaris</groupId>
-            <artifactId>polaris-common-doc</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.polaris</groupId>
-            <artifactId>polaris-common-social</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.polaris</groupId>
-            <artifactId>polaris-common-ratelimiter</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.polaris</groupId>
-            <artifactId>polaris-common-mail</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.polaris</groupId>
             <artifactId>polaris-system</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.polaris</groupId>
+            <artifactId>polaris-auth</artifactId>
         </dependency>
 
         <dependency>

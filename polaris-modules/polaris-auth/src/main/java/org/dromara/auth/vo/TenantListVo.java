@@ -1,8 +1,8 @@
-package org.dromara.web.domain.vo;
+package org.dromara.auth.vo;
 
-import org.dromara.system.domain.vo.SysTenantVo;
 import io.github.linpeilie.annotations.AutoMapper;
 import lombok.Data;
+import org.dromara.system.domain.vo.SysTenantVo;
 
 /**
  * 租户列表

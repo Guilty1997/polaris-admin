@@ -1,4 +1,4 @@
-package org.dromara.web.service.impl;
+package org.dromara.auth.service.impl;
 
 import cn.dev33.satoken.stp.StpUtil;
 import cn.dev33.satoken.stp.parameter.SaLoginParameter;
@@ -12,6 +12,9 @@ import me.zhyd.oauth.model.AuthToken;
 import me.zhyd.oauth.model.AuthUser;
 import me.zhyd.oauth.request.AuthRequest;
 import me.zhyd.oauth.request.AuthWechatMiniProgramRequest;
+import org.dromara.auth.service.IAuthStrategy;
+import org.dromara.auth.service.SysLoginService;
+import org.dromara.auth.vo.LoginVo;
 import org.dromara.common.core.constant.SystemConstants;
 import org.dromara.common.core.domain.model.XcxLoginBody;
 import org.dromara.common.core.domain.model.XcxLoginUser;
@@ -21,9 +24,6 @@ import org.dromara.common.json.utils.JsonUtils;
 import org.dromara.common.satoken.utils.LoginHelper;
 import org.dromara.system.domain.vo.SysClientVo;
 import org.dromara.system.domain.vo.SysUserVo;
-import org.dromara.web.domain.vo.LoginVo;
-import org.dromara.web.service.IAuthStrategy;
-import org.dromara.web.service.SysLoginService;
 import org.springframework.stereotype.Service;
 
 /**

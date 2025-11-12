@@ -1,4 +1,4 @@
-package org.dromara.web.service;
+package org.dromara.auth.service;
 
 import cn.hutool.crypto.digest.BCrypt;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;

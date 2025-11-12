@@ -1,4 +1,4 @@
-package org.dromara.web.controller;
+package org.dromara.auth.controller;
 
 import cn.dev33.satoken.annotation.SaIgnore;
 import lombok.RequiredArgsConstructor;

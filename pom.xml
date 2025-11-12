@@ -334,6 +334,12 @@
 
             <dependency>
                 <groupId>com.polaris</groupId>
+                <artifactId>polaris-auth</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.polaris</groupId>
                 <artifactId>polaris-job</artifactId>
                 <version>${revision}</version>
             </dependency>

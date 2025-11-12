@@ -15,6 +15,7 @@
         <module>polaris-job</module>
         <module>polaris-system</module>
         <module>polaris-workflow</module>
+        <module>polaris-auth</module>
     </modules>
 
     <artifactId>polaris-modules</artifactId>

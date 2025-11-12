@@ -1,4 +1,4 @@
-package org.dromara.web.service.impl;
+package org.dromara.auth.service.impl;
 
 import cn.dev33.satoken.stp.StpUtil;
 import cn.dev33.satoken.stp.parameter.SaLoginParameter;
@@ -6,6 +6,9 @@ import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.auth.service.IAuthStrategy;
+import org.dromara.auth.service.SysLoginService;
+import org.dromara.auth.vo.LoginVo;
 import org.dromara.common.core.constant.Constants;
 import org.dromara.common.core.constant.GlobalConstants;
 import org.dromara.common.core.constant.SystemConstants;
@@ -25,9 +28,6 @@ import org.dromara.system.domain.SysUser;
 import org.dromara.system.domain.vo.SysClientVo;
 import org.dromara.system.domain.vo.SysUserVo;
 import org.dromara.system.mapper.SysUserMapper;
-import org.dromara.web.domain.vo.LoginVo;
-import org.dromara.web.service.IAuthStrategy;
-import org.dromara.web.service.SysLoginService;
 import org.springframework.stereotype.Service;
 
 /**

@@ -1,17 +1,22 @@
-package org.dromara.web.service.impl;
+package org.dromara.auth.service.impl;
 
 import cn.dev33.satoken.stp.StpUtil;
 import cn.dev33.satoken.stp.parameter.SaLoginParameter;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.crypto.digest.BCrypt;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.auth.service.IAuthStrategy;
+import org.dromara.auth.service.SysLoginService;
+import org.dromara.auth.vo.LoginVo;
 import org.dromara.common.core.constant.Constants;
 import org.dromara.common.core.constant.GlobalConstants;
 import org.dromara.common.core.constant.SystemConstants;
-import org.dromara.common.core.domain.model.EmailLoginBody;
 import org.dromara.common.core.domain.model.LoginUser;
+import org.dromara.common.core.domain.model.PasswordLoginBody;
 import org.dromara.common.core.enums.LoginType;
+import org.dromara.common.core.exception.user.CaptchaException;
 import org.dromara.common.core.exception.user.CaptchaExpireException;
 import org.dromara.common.core.exception.user.UserException;
 import org.dromara.common.core.utils.MessageUtils;
@@ -21,39 +26,46 @@ import org.dromara.common.json.utils.JsonUtils;
 import org.dromara.common.redis.utils.RedisUtils;
 import org.dromara.common.satoken.utils.LoginHelper;
 import org.dromara.common.tenant.helper.TenantHelper;
+import org.dromara.common.web.config.properties.CaptchaProperties;
 import org.dromara.system.domain.SysUser;
 import org.dromara.system.domain.vo.SysClientVo;
 import org.dromara.system.domain.vo.SysUserVo;
 import org.dromara.system.mapper.SysUserMapper;
-import org.dromara.web.domain.vo.LoginVo;
-import org.dromara.web.service.IAuthStrategy;
-import org.dromara.web.service.SysLoginService;
 import org.springframework.stereotype.Service;
 
 /**
- * 邮件认证策略
+ * 密码认证策略
  *
  * @author Michelle.Chung
  */
 @Slf4j
-@Service("email" + IAuthStrategy.BASE_NAME)
+@Service("password" + IAuthStrategy.BASE_NAME)
 @RequiredArgsConstructor
-public class EmailAuthStrategy implements IAuthStrategy {
+public class PasswordAuthStrategy implements IAuthStrategy {
 
+    private final CaptchaProperties captchaProperties;
     private final SysLoginService loginService;
     private final SysUserMapper userMapper;
 
     @Override
     public LoginVo login(String body, SysClientVo client) {
-        EmailLoginBody loginBody = JsonUtils.parseObject(body, EmailLoginBody.class);
+        PasswordLoginBody loginBody = JsonUtils.parseObject(body, PasswordLoginBody.class);
         ValidatorUtils.validate(loginBody);
         String tenantId = loginBody.getTenantId();
-        String email = loginBody.getEmail();
-        String emailCode = loginBody.getEmailCode();
+        String username = loginBody.getUsername();
+        String password = loginBody.getPassword();
+        String code = loginBody.getCode();
+        String uuid = loginBody.getUuid();
+
+        boolean captchaEnabled = captchaProperties.getEnable();
+        // 验证码开关
+        if (captchaEnabled) {
+            validateCaptcha(tenantId, username, code, uuid);
+        }
         LoginUser loginUser = TenantHelper.dynamic(tenantId, () -> {
-            SysUserVo user = loadUserByEmail(email);
-            loginService.checkLogin(LoginType.EMAIL, tenantId, user.getUserName(), () -> !validateEmailCode(tenantId, email, emailCode));
-            // 此处可根据登录用户的数据不同 自行创建 loginUser 属性不够用继承扩展就行了
+            SysUserVo user = loadUserByUsername(username);
+            loginService.checkLogin(LoginType.PASSWORD, tenantId, username, () -> !BCrypt.checkpw(password, user.getPassword()));
+            // 此处可根据登录用户的数据不同 自行创建 loginUser
             return loginService.buildLoginUser(user);
         });
         loginUser.setClientKey(client.getClientKey());
@@ -76,25 +88,34 @@ public class EmailAuthStrategy implements IAuthStrategy {
     }
 
     /**
-     * 校验邮箱验证码
+     * 校验验证码
+     *
+     * @param username 用户名
+     * @param code     验证码
+     * @param uuid     唯一标识
      */
-    private boolean validateEmailCode(String tenantId, String email, String emailCode) {
-        String code = RedisUtils.getCacheObject(GlobalConstants.CAPTCHA_CODE_KEY + email);
-        if (StringUtils.isBlank(code)) {
-            loginService.recordLogininfor(tenantId, email, Constants.LOGIN_FAIL, MessageUtils.message("user.jcaptcha.expire"));
+    private void validateCaptcha(String tenantId, String username, String code, String uuid) {
+        String verifyKey = GlobalConstants.CAPTCHA_CODE_KEY + StringUtils.blankToDefault(uuid, "");
+        String captcha = RedisUtils.getCacheObject(verifyKey);
+        RedisUtils.deleteObject(verifyKey);
+        if (captcha == null) {
+            loginService.recordLogininfor(tenantId, username, Constants.LOGIN_FAIL, MessageUtils.message("user.jcaptcha.expire"));
             throw new CaptchaExpireException();
         }
-        return code.equals(emailCode);
+        if (!StringUtils.equalsIgnoreCase(code, captcha)) {
+            loginService.recordLogininfor(tenantId, username, Constants.LOGIN_FAIL, MessageUtils.message("user.jcaptcha.error"));
+            throw new CaptchaException();
+        }
     }
 
-    private SysUserVo loadUserByEmail(String email) {
-        SysUserVo user = userMapper.selectVoOne(new LambdaQueryWrapper<SysUser>().eq(SysUser::getEmail, email));
+    private SysUserVo loadUserByUsername(String username) {
+        SysUserVo user = userMapper.selectVoOne(new LambdaQueryWrapper<SysUser>().eq(SysUser::getUserName, username));
         if (ObjectUtil.isNull(user)) {
-            log.info("登录用户：{} 不存在.", email);
-            throw new UserException("user.not.exists", email);
+            log.info("登录用户：{} 不存在.", username);
+            throw new UserException("user.not.exists", username);
         } else if (SystemConstants.DISABLE.equals(user.getStatus())) {
-            log.info("登录用户：{} 已被停用.", email);
-            throw new UserException("user.blocked", email);
+            log.info("登录用户：{} 已被停用.", username);
+            throw new UserException("user.blocked", username);
         }
         return user;
     }

@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.polaris</groupId>
+        <artifactId>polaris-modules</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <artifactId>polaris-auth</artifactId>
+
+    <description>
+        认证模块
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.polaris</groupId>
+            <artifactId>polaris-common-doc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.polaris</groupId>
+            <artifactId>polaris-common-social</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.polaris</groupId>
+            <artifactId>polaris-common-ratelimiter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.polaris</groupId>
+            <artifactId>polaris-common-mail</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.polaris</groupId>
+            <artifactId>polaris-system</artifactId>
+        </dependency>
+
+    </dependencies>
+</project>

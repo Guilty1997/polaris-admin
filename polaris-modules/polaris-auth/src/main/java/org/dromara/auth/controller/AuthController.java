@@ -1,4 +1,4 @@
-package org.dromara.web.controller;
+package org.dromara.auth.controller;
 
 import cn.dev33.satoken.annotation.SaIgnore;
 import cn.dev33.satoken.exception.NotLoginException;
@@ -13,6 +13,12 @@ import me.zhyd.oauth.model.AuthResponse;
 import me.zhyd.oauth.model.AuthUser;
 import me.zhyd.oauth.request.AuthRequest;
 import me.zhyd.oauth.utils.AuthStateUtils;
+import org.dromara.auth.service.IAuthStrategy;
+import org.dromara.auth.service.SysLoginService;
+import org.dromara.auth.service.SysRegisterService;
+import org.dromara.auth.vo.LoginTenantVo;
+import org.dromara.auth.vo.LoginVo;
+import org.dromara.auth.vo.TenantListVo;
 import org.dromara.common.core.constant.SystemConstants;
 import org.dromara.common.core.domain.R;
 import org.dromara.common.core.domain.model.LoginBody;
@@ -37,12 +43,6 @@ import org.dromara.system.service.ISysClientService;
 import org.dromara.system.service.ISysConfigService;
 import org.dromara.system.service.ISysSocialService;
 import org.dromara.system.service.ISysTenantService;
-import org.dromara.web.domain.vo.LoginTenantVo;
-import org.dromara.web.domain.vo.LoginVo;
-import org.dromara.web.domain.vo.TenantListVo;
-import org.dromara.web.service.IAuthStrategy;
-import org.dromara.web.service.SysLoginService;
-import org.dromara.web.service.SysRegisterService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -147,8 +147,8 @@ public class AuthController {
         StpUtil.checkLogin();
         // 获取第三方登录信息
         AuthResponse<AuthUser> response = SocialUtils.loginAuth(
-                loginBody.getSource(), loginBody.getSocialCode(),
-                loginBody.getSocialState(), socialProperties);
+            loginBody.getSource(), loginBody.getSocialCode(),
+            loginBody.getSocialState(), socialProperties);
         AuthUser authUserData = response.getData();
         // 判断授权响应是否成功
         if (!response.ok()) {

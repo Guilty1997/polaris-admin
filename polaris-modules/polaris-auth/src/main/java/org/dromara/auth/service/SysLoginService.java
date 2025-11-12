@@ -1,4 +1,4 @@
-package org.dromara.web.service;
+package org.dromara.auth.service;
 
 import cn.dev33.satoken.exception.NotLoginException;
 import cn.dev33.satoken.stp.StpUtil;

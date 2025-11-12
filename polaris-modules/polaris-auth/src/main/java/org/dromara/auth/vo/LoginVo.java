@@ -1,4 +1,4 @@
-package org.dromara.web.domain.vo;
+package org.dromara.auth.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
