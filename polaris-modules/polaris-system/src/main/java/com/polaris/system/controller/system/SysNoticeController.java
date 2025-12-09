@@ -2,7 +2,7 @@ package com.polaris.system.controller.system;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.polaris.common.core.domain.R;
-import com.polaris.common.core.service.DictService;
+import com.polaris.common.spi.service.DictService;
 import com.polaris.common.idempotent.annotation.RepeatSubmit;
 import com.polaris.common.log.annotation.Log;
 import com.polaris.common.log.enums.BusinessType;

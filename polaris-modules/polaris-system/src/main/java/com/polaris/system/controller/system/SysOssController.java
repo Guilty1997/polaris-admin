@@ -4,7 +4,7 @@ package com.polaris.system.controller.system;
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import cn.hutool.core.util.ObjectUtil;
 import com.polaris.common.core.domain.R;
-import com.polaris.common.core.validate.QueryGroup;
+import com.polaris.common.validation.QueryGroup;
 import com.polaris.common.log.annotation.Log;
 import com.polaris.common.log.enums.BusinessType;
 import com.polaris.common.mybatis.core.page.PageQuery;

@@ -22,6 +22,11 @@
             <artifactId>polaris-common-json</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.polaris</groupId>
+            <artifactId>polaris-common-spi</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

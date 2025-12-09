@@ -2,11 +2,11 @@ package com.polaris.system.service.impl;
 
 import cn.hutool.core.convert.Convert;
 import com.polaris.common.core.constant.SystemConstants;
-import com.polaris.common.core.domain.dto.TaskAssigneeDTO;
-import com.polaris.common.core.domain.model.TaskAssigneeBody;
-import com.polaris.common.core.service.TaskAssigneeService;
 import com.polaris.common.mybatis.core.page.PageQuery;
 import com.polaris.common.mybatis.core.page.TableDataInfo;
+import com.polaris.common.spi.domain.dto.TaskAssigneeDTO;
+import com.polaris.common.spi.domain.model.TaskAssigneeBody;
+import com.polaris.common.spi.service.TaskAssigneeService;
 import com.polaris.system.domain.bo.SysDeptBo;
 import com.polaris.system.domain.bo.SysPostBo;
 import com.polaris.system.domain.bo.SysRoleBo;

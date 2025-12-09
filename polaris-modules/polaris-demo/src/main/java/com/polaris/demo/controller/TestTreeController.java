@@ -2,9 +2,9 @@ package com.polaris.demo.controller;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.polaris.common.core.domain.R;
-import com.polaris.common.core.validate.AddGroup;
-import com.polaris.common.core.validate.EditGroup;
-import com.polaris.common.core.validate.QueryGroup;
+import com.polaris.common.validation.AddGroup;
+import com.polaris.common.validation.EditGroup;
+import com.polaris.common.validation.QueryGroup;
 import com.polaris.common.excel.utils.ExcelUtil;
 import com.polaris.common.idempotent.annotation.RepeatSubmit;
 import com.polaris.common.log.annotation.Log;

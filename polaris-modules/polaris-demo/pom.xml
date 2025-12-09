@@ -103,6 +103,11 @@
             <artifactId>polaris-common-websocket</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.polaris</groupId>
+            <artifactId>polaris-common-validation</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

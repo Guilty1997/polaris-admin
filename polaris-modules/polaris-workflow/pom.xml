@@ -78,6 +78,11 @@
             <groupId>org.dromara.warm</groupId>
             <artifactId>warm-flow-plugin-ui-sb-web</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.polaris</groupId>
+            <artifactId>polaris-common-validation</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

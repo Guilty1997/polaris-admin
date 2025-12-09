@@ -2,7 +2,7 @@ package com.polaris.workflow.domain.bo;
 
 
 import cn.hutool.core.util.ObjectUtil;
-import com.polaris.common.core.validate.AddGroup;
+import com.polaris.common.validation.AddGroup;
 import com.polaris.workflow.domain.FlowInstanceBizExt;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

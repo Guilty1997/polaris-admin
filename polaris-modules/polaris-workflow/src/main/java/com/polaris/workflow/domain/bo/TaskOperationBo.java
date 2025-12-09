@@ -1,7 +1,7 @@
 package com.polaris.workflow.domain.bo;
 
-import com.polaris.common.core.validate.AddGroup;
-import com.polaris.common.core.validate.EditGroup;
+import com.polaris.common.validation.AddGroup;
+import com.polaris.common.validation.EditGroup;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 

@@ -2,11 +2,11 @@ package com.polaris.workflow.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
-import com.polaris.common.core.domain.dto.CompleteTaskDTO;
-import com.polaris.common.core.domain.dto.StartProcessDTO;
-import com.polaris.common.core.domain.dto.StartProcessReturnDTO;
+import  com.polaris.common.spi.domain.dto.CompleteTaskDTO;
+import  com.polaris.common.spi.domain.dto.StartProcessDTO;
+import  com.polaris.common.spi.domain.dto.StartProcessReturnDTO;
 import com.polaris.common.core.exception.ServiceException;
-import com.polaris.common.core.service.WorkflowService;
+import com.polaris.common.spi.service.WorkflowService;
 import com.polaris.common.core.utils.StringUtils;
 import com.polaris.workflow.common.ConditionalOnEnable;
 import com.polaris.workflow.common.enums.MessageTypeEnum;

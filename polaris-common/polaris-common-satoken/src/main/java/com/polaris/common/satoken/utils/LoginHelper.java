@@ -8,8 +8,8 @@ import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
 import com.polaris.common.core.constant.SystemConstants;
 import com.polaris.common.core.constant.TenantConstants;
-import com.polaris.common.core.domain.model.LoginUser;
 import com.polaris.common.core.enums.UserType;
+import com.polaris.common.spi.domain.model.LoginUser;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

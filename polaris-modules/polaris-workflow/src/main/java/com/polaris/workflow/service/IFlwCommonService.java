@@ -1,6 +1,6 @@
 package com.polaris.workflow.service;
 
-import com.polaris.common.core.domain.dto.UserDTO;
+import  com.polaris.common.spi.domain.dto.UserDTO;
 
 import java.util.List;
 

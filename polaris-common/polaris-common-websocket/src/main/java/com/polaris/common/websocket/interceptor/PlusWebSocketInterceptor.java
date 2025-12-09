@@ -2,10 +2,10 @@ package com.polaris.common.websocket.interceptor;
 
 import cn.dev33.satoken.exception.NotLoginException;
 import cn.dev33.satoken.stp.StpUtil;
-import com.polaris.common.core.domain.model.LoginUser;
 import com.polaris.common.core.utils.ServletUtils;
 import com.polaris.common.core.utils.StringUtils;
 import com.polaris.common.satoken.utils.LoginHelper;
+import com.polaris.common.spi.domain.model.LoginUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;

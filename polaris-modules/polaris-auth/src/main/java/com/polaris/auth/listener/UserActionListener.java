@@ -9,7 +9,7 @@ import cn.hutool.http.useragent.UserAgentUtil;
 import com.polaris.auth.service.SysLoginService;
 import com.polaris.common.core.constant.CacheConstants;
 import com.polaris.common.core.constant.Constants;
-import com.polaris.common.core.domain.dto.UserOnlineDTO;
+import  com.polaris.common.spi.domain.dto.UserOnlineDTO;
 import com.polaris.common.core.utils.MessageUtils;
 import com.polaris.common.core.utils.ServletUtils;
 import com.polaris.common.core.utils.SpringUtils;

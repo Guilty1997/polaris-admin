@@ -1,8 +1,8 @@
 package com.polaris.common.mybatis.enums;
 
-import com.polaris.common.core.domain.model.LoginUser;
 import com.polaris.common.core.utils.StringUtils;
 import com.polaris.common.mybatis.helper.DataPermissionHelper;
+import com.polaris.common.spi.domain.model.LoginUser;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

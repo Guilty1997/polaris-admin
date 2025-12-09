@@ -1,6 +1,6 @@
 package com.polaris.common.translation.core.impl;
 
-import com.polaris.common.core.service.DictService;
+import com.polaris.common.spi.service.DictService;
 import com.polaris.common.core.utils.StringUtils;
 import com.polaris.common.translation.annotation.TranslationType;
 import com.polaris.common.translation.constant.TransConstant;

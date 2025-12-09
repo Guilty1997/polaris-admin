@@ -6,7 +6,7 @@ import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.bean.BeanUtil;
 import com.polaris.common.core.constant.CacheConstants;
 import com.polaris.common.core.domain.R;
-import com.polaris.common.core.domain.dto.UserOnlineDTO;
+import  com.polaris.common.spi.domain.dto.UserOnlineDTO;
 import com.polaris.common.core.utils.StreamUtils;
 import com.polaris.common.core.utils.StringUtils;
 import com.polaris.common.idempotent.annotation.RepeatSubmit;

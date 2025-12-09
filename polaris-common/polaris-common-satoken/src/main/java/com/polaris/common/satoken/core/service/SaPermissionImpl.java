@@ -3,13 +3,13 @@ package com.polaris.common.satoken.core.service;
 import cn.dev33.satoken.stp.StpInterface;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
-import com.polaris.common.core.domain.model.LoginUser;
 import com.polaris.common.core.enums.UserType;
 import com.polaris.common.core.exception.ServiceException;
-import com.polaris.common.core.service.PermissionService;
 import com.polaris.common.core.utils.SpringUtils;
 import com.polaris.common.core.utils.StringUtils;
 import com.polaris.common.satoken.utils.LoginHelper;
+import com.polaris.common.spi.domain.model.LoginUser;
+import com.polaris.common.spi.service.PermissionService;
 
 import java.util.ArrayList;
 import java.util.List;

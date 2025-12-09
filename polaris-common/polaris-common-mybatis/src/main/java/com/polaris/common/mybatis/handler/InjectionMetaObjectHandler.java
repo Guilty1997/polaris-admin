@@ -3,11 +3,11 @@ package com.polaris.common.mybatis.handler;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.http.HttpStatus;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-import com.polaris.common.core.domain.model.LoginUser;
 import com.polaris.common.core.exception.ServiceException;
 import com.polaris.common.core.utils.ObjectUtils;
 import com.polaris.common.mybatis.core.domain.BaseEntity;
 import com.polaris.common.satoken.utils.LoginHelper;
+import com.polaris.common.spi.domain.model.LoginUser;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
 

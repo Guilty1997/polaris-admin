@@ -179,6 +179,20 @@
                 <version>${revision}</version>
             </dependency>
 
+            <!-- SPI模块 -->
+            <dependency>
+                <groupId>com.polaris</groupId>
+                <artifactId>polaris-common-spi</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- validation模块 -->
+            <dependency>
+                <groupId>com.polaris</groupId>
+                <artifactId>polaris-common-validation</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
