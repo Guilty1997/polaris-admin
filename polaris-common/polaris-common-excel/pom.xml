@@ -25,11 +25,6 @@
             <groupId>cn.idev.excel</groupId>
             <artifactId>fastexcel</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>com.polaris</groupId>
-            <artifactId>polaris-common-spi</artifactId>
-        </dependency>
     </dependencies>
 
 </project>

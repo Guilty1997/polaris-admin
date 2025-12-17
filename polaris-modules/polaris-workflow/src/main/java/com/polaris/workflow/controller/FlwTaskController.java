@@ -1,9 +1,9 @@
 package com.polaris.workflow.controller;
 
 import com.polaris.common.core.domain.R;
-import  com.polaris.common.spi.domain.dto.StartProcessReturnDTO;
-import  com.polaris.common.spi.domain.dto.UserDTO;
-import com.polaris.common.validation.AddGroup;
+import com.polaris.common.core.domain.dto.StartProcessReturnDTO;
+import com.polaris.common.core.domain.dto.UserDTO;
+import com.polaris.common.core.validate.AddGroup;
 import com.polaris.common.idempotent.annotation.RepeatSubmit;
 import com.polaris.common.log.annotation.Log;
 import com.polaris.common.log.enums.BusinessType;

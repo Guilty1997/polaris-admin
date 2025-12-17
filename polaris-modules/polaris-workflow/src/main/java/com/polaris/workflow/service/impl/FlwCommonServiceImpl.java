@@ -2,7 +2,7 @@ package com.polaris.workflow.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
-import  com.polaris.common.spi.domain.dto.UserDTO;
+import com.polaris.common.core.domain.dto.UserDTO;
 import com.polaris.common.core.utils.SpringUtils;
 import com.polaris.common.core.utils.StreamUtils;
 import com.polaris.common.core.utils.StringUtils;

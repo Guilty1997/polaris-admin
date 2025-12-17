@@ -6,7 +6,7 @@ import cn.hutool.core.lang.TypeReference;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.polaris.common.core.enums.BusinessStatusEnum;
-import com.polaris.common.spi.service.UserService;
+import com.polaris.common.core.service.UserService;
 import com.polaris.common.core.utils.StreamUtils;
 import com.polaris.common.core.utils.StringUtils;
 import com.polaris.workflow.common.ConditionalOnEnable;

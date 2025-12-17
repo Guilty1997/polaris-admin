@@ -1,8 +1,8 @@
 package com.polaris.system.service.impl;
 
 import com.polaris.common.core.constant.TenantConstants;
+import com.polaris.common.core.service.PermissionService;
 import com.polaris.common.satoken.utils.LoginHelper;
-import com.polaris.common.spi.service.PermissionService;
 import com.polaris.system.service.ISysMenuService;
 import com.polaris.system.service.ISysPermissionService;
 import com.polaris.system.service.ISysRoleService;

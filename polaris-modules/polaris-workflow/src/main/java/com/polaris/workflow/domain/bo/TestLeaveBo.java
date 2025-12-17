@@ -1,8 +1,8 @@
 package com.polaris.workflow.domain.bo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.polaris.common.validation.AddGroup;
-import com.polaris.common.validation.EditGroup;
+import com.polaris.common.core.validate.AddGroup;
+import com.polaris.common.core.validate.EditGroup;
 import com.polaris.common.mybatis.core.domain.BaseEntity;
 import com.polaris.workflow.domain.TestLeave;
 import io.github.linpeilie.annotations.AutoMapper;

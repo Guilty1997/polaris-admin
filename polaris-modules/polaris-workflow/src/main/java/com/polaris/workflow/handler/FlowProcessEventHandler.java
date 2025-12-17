@@ -1,9 +1,9 @@
 package com.polaris.workflow.handler;
 
+import com.polaris.common.core.domain.event.ProcessDeleteEvent;
+import com.polaris.common.core.domain.event.ProcessEvent;
+import com.polaris.common.core.domain.event.ProcessTaskEvent;
 import com.polaris.common.core.utils.SpringUtils;
-import com.polaris.common.spi.domain.event.ProcessDeleteEvent;
-import com.polaris.common.spi.domain.event.ProcessEvent;
-import com.polaris.common.spi.domain.event.ProcessTaskEvent;
 import com.polaris.common.tenant.helper.TenantHelper;
 import com.polaris.workflow.common.ConditionalOnEnable;
 import lombok.extern.slf4j.Slf4j;

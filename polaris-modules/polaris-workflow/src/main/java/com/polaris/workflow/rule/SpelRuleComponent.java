@@ -2,7 +2,7 @@ package com.polaris.workflow.rule;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.polaris.common.core.exception.ServiceException;
-import com.polaris.common.spi.service.DeptService;
+import com.polaris.common.core.service.DeptService;
 import com.polaris.workflow.common.ConditionalOnEnable;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,7 @@
 package com.polaris.workflow.service;
 
-import  com.polaris.common.spi.domain.dto.StartProcessReturnDTO;
-import  com.polaris.common.spi.domain.dto.UserDTO;
+import com.polaris.common.core.domain.dto.StartProcessReturnDTO;
+import com.polaris.common.core.domain.dto.UserDTO;
 import com.polaris.common.mybatis.core.page.PageQuery;
 import com.polaris.common.mybatis.core.page.TableDataInfo;
 import com.polaris.workflow.domain.bo.*;

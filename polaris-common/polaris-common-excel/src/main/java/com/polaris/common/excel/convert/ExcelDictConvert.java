@@ -9,7 +9,7 @@ import cn.idev.excel.metadata.GlobalConfiguration;
 import cn.idev.excel.metadata.data.ReadCellData;
 import cn.idev.excel.metadata.data.WriteCellData;
 import cn.idev.excel.metadata.property.ExcelContentProperty;
-import com.polaris.common.spi.service.DictService;
+import com.polaris.common.core.service.DictService;
 import com.polaris.common.core.utils.SpringUtils;
 import com.polaris.common.core.utils.StringUtils;
 import com.polaris.common.excel.annotation.ExcelDictFormat;

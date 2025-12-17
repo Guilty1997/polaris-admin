@@ -13,7 +13,7 @@ import cn.idev.excel.write.handler.SheetWriteHandler;
 import cn.idev.excel.write.metadata.holder.WriteSheetHolder;
 import cn.idev.excel.write.metadata.holder.WriteWorkbookHolder;
 import com.polaris.common.core.exception.ServiceException;
-import com.polaris.common.spi.service.DictService;
+import com.polaris.common.core.service.DictService;
 import com.polaris.common.core.utils.SpringUtils;
 import com.polaris.common.core.utils.StreamUtils;
 import com.polaris.common.core.utils.StringUtils;

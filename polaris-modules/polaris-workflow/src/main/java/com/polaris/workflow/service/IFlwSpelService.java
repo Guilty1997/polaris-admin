@@ -1,9 +1,9 @@
 package com.polaris.workflow.service;
 
+import com.polaris.common.core.domain.dto.TaskAssigneeDTO;
+import com.polaris.common.core.domain.model.TaskAssigneeBody;
 import com.polaris.common.mybatis.core.page.PageQuery;
 import com.polaris.common.mybatis.core.page.TableDataInfo;
-import com.polaris.common.spi.domain.dto.TaskAssigneeDTO;
-import com.polaris.common.spi.domain.model.TaskAssigneeBody;
 import com.polaris.workflow.domain.bo.FlowSpelBo;
 import com.polaris.workflow.domain.vo.FlowSpelVo;
 

@@ -2,7 +2,7 @@ package com.polaris.workflow.handler;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
-import  com.polaris.common.spi.domain.dto.UserDTO;
+import com.polaris.common.core.domain.dto.UserDTO;
 import com.polaris.common.core.utils.StreamUtils;
 import com.polaris.common.core.utils.StringUtils;
 import com.polaris.common.satoken.utils.LoginHelper;

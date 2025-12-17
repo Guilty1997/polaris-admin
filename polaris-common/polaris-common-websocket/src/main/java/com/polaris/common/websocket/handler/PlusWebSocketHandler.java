@@ -1,7 +1,7 @@
 package com.polaris.common.websocket.handler;
 
 import cn.hutool.core.util.ObjectUtil;
-import com.polaris.common.spi.domain.model.LoginUser;
+import com.polaris.common.core.domain.model.LoginUser;
 import com.polaris.common.websocket.dto.WebSocketMessageDto;
 import com.polaris.common.websocket.holder.WebSocketSessionHolder;
 import com.polaris.common.websocket.utils.WebSocketUtils;

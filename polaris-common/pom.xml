@@ -34,8 +34,6 @@
         <module>polaris-common-tenant</module>
         <module>polaris-common-websocket</module>
         <module>polaris-common-sse</module>
-        <module>polaris-common-spi</module>
-        <module>polaris-common-validation</module>
     </modules>
 
     <artifactId>polaris-common</artifactId>

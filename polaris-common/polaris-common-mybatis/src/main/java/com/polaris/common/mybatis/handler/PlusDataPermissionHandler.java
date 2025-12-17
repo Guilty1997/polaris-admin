@@ -2,6 +2,8 @@ package com.polaris.common.mybatis.handler;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
+import com.polaris.common.core.domain.dto.RoleDTO;
+import com.polaris.common.core.domain.model.LoginUser;
 import com.polaris.common.core.exception.ServiceException;
 import com.polaris.common.core.utils.SpringUtils;
 import com.polaris.common.core.utils.StreamUtils;
@@ -11,8 +13,6 @@ import com.polaris.common.mybatis.annotation.DataPermission;
 import com.polaris.common.mybatis.enums.DataScopeType;
 import com.polaris.common.mybatis.helper.DataPermissionHelper;
 import com.polaris.common.satoken.utils.LoginHelper;
-import com.polaris.common.spi.domain.dto.RoleDTO;
-import com.polaris.common.spi.domain.model.LoginUser;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.jsqlparser.JSQLParserException;
