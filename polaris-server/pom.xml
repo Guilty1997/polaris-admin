@@ -78,6 +78,12 @@
             <artifactId>polaris-workflow</artifactId>
         </dependency>
 
+        <!--  AI模块  -->
+        <dependency>
+            <groupId>com.polaris</groupId>
+            <artifactId>polaris-ai</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-starter-client</artifactId>

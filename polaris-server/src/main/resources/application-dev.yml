@@ -268,3 +268,22 @@ justauth:
       client-id: 10**********6
       client-secret: 1f7d08**********5b7**********29e
       redirect-uri: ${justauth.address}/social-callback?source=gitea
+
+
+--- # AI 本地配置覆盖
+ai:
+  moonshot:
+    api-key: ${AI_MOONSHOT_API_KEY:}
+    embedding:
+      api-key: ${AI_MOONSHOT_EMBEDDING_API_KEY:}
+  pgvector:
+    enabled: true
+    host: 127.0.0.1
+    port: 5432
+    database: polaris_ai
+    username: postgres
+    password: postgres
+    schema: public
+    table: ai_embeddings
+    dimension: 1536
+

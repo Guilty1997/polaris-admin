@@ -49,6 +49,7 @@
         <anyline.version>8.7.2-20250603</anyline.version>
         <!-- 工作流配置 -->
         <warm-flow.version>1.8.2</warm-flow.version>
+        <langchain4j.version>0.36.0</langchain4j.version>
 
         <!-- 插件版本 -->
         <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
@@ -149,6 +150,24 @@
                 <groupId>cn.idev.excel</groupId>
                 <artifactId>fastexcel</artifactId>
                 <version>${fastexcel.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-spring-boot-starter</artifactId>
+                <version>${langchain4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-open-ai</artifactId>
+                <version>${langchain4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-pgvector</artifactId>
+                <version>${langchain4j.version}</version>
             </dependency>
 
             <!-- velocity代码生成使用模板 -->
@@ -353,6 +372,12 @@
             <dependency>
                 <groupId>com.polaris</groupId>
                 <artifactId>polaris-demo</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.polaris</groupId>
+                <artifactId>polaris-ai</artifactId>
                 <version>${revision}</version>
             </dependency>
 

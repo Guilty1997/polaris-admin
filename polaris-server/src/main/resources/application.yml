@@ -263,3 +263,32 @@ warm-flow:
   node-tooltip: true
   # 默认Authorization，如果有多个token，用逗号分隔
   token-name: ${sa-token.token-name},clientid
+
+
+--- # AI 配置（Moonshot + PgVector）
+ai:
+  moonshot:
+    enabled: true
+    base-url: https://api.moonshot.cn/v1
+    api-key: ${AI_MOONSHOT_API_KEY:}
+    model: moonshot-v1-8k
+    temperature: 0.3
+    max-tokens: 2048
+    timeout: 60s
+    embedding:
+      enabled: true
+      base-url: https://api.moonshot.cn/v1
+      api-key: ${AI_MOONSHOT_EMBEDDING_API_KEY:}
+      model: text-embedding-3-small
+      dimension: 1536
+  pgvector:
+    enabled: false
+    host: 127.0.0.1
+    port: 5432
+    database: polaris_ai
+    username: postgres
+    password: postgres
+    schema: public
+    table: ai_embeddings
+    dimension: 1536
+
