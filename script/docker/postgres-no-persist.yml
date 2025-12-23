@@ -1,0 +1,27 @@
+name: polaris
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg14
+    container_name: postgres
+    environment:
+      # 时区上海
+      TZ: Asia/Shanghai
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    # 注意：此处不包含 volumes，数据不会持久化
+    restart: unless-stopped
+
+  redis:
+    image: redis:7.2.8
+    container_name: redis
+    ports:
+      - "6379:6379"
+    environment:
+      # 时区上海
+      TZ: Asia/Shanghai
+    # 注意：此处不包含 volumes，数据不会持久化
+    restart: unless-stopped

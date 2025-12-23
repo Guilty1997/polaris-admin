@@ -44,12 +44,12 @@ spring:
         # 主库数据源
         master:
           type: ${spring.datasource.type}
-          driverClassName: com.mysql.cj.jdbc.Driver
+          driverClassName: org.postgresql.Driver
           # jdbc 所有参数配置参考 https://lionli.blog.csdn.net/article/details/122018562
-          # rewriteBatchedStatements=true 批处理优化 大幅提升批量插入更新删除性能(对数据库有性能损耗 使用批量操作应考虑性能问题)
-          url: jdbc:mysql://localhost:3306/ry-vue?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&autoReconnect=true&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true
-          username: root
-          password: 123456
+          # reWriteBatchedInserts=true 批处理优化 大幅提升批量插入更新删除性能(对数据库有性能损耗 使用批量操作应考虑性能问题)
+          url: jdbc:postgresql://localhost:5432/polaris_admin?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&reWriteBatchedInserts=true
+          username: polaris_admin
+          password: polaris_admin
       #        # 从库数据源
       #        slave:
       #          lazy: true
@@ -273,16 +273,16 @@ justauth:
 --- # AI 本地配置覆盖
 ai:
   moonshot:
-    api-key: ${AI_MOONSHOT_API_KEY:}
+    api-key: ${AI_MOONSHOT_API_KEY:xxxxxx}
     embedding:
-      api-key: ${AI_MOONSHOT_EMBEDDING_API_KEY:}
+      api-key: ${AI_MOONSHOT_EMBEDDING_API_KEY:xxxxx}
   pgvector:
     enabled: true
     host: 127.0.0.1
     port: 5432
-    database: polaris_ai
-    username: postgres
-    password: postgres
+    database: polaris_admin
+    username: polaris_admin
+    password: polaris_admin
     schema: public
     table: ai_embeddings
     dimension: 1536
