@@ -6,6 +6,7 @@ import cn.dev33.satoken.stp.parameter.SaLoginParameter;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
+import com.polaris.common.context.holder.UserContextHolder;
 import com.polaris.common.core.constant.SystemConstants;
 import com.polaris.common.core.constant.TenantConstants;
 import com.polaris.common.core.domain.model.LoginUser;
@@ -58,6 +59,8 @@ public class LoginHelper {
                 .setExtra(DEPT_CATEGORY_KEY, loginUser.getDeptCategory())
         );
         StpUtil.getTokenSession().set(LOGIN_USER_KEY, loginUser);
+        // 同步填充 ThreadLocal，供不依赖 Sa-Token 的模块（mybatis/log）使用
+        UserContextHolder.set(loginUser);
     }
 
     /**

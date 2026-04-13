@@ -4,6 +4,7 @@ import cn.hutool.core.lang.Dict;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ObjectUtil;
+import com.polaris.common.context.helper.UserContextHelper;
 import com.polaris.common.core.domain.model.LoginUser;
 import com.polaris.common.core.utils.ServletUtils;
 import com.polaris.common.core.utils.SpringUtils;
@@ -12,7 +13,6 @@ import com.polaris.common.json.utils.JsonUtils;
 import com.polaris.common.log.annotation.Log;
 import com.polaris.common.log.enums.BusinessStatus;
 import com.polaris.common.log.event.OperLogEvent;
-import com.polaris.common.satoken.utils.LoginHelper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -86,15 +86,17 @@ public class LogAspect {
 
             // *========数据库日志=========*//
             OperLogEvent operLog = new OperLogEvent();
-            operLog.setTenantId(LoginHelper.getTenantId());
+            operLog.setTenantId(UserContextHelper.getTenantId());
             operLog.setStatus(BusinessStatus.SUCCESS.ordinal());
             // 请求的地址
             String ip = ServletUtils.getClientIP();
             operLog.setOperIp(ip);
             operLog.setOperUrl(StringUtils.substring(ServletUtils.getRequest().getRequestURI(), 0, 255));
-            LoginUser loginUser = LoginHelper.getLoginUser();
-            operLog.setOperName(loginUser.getUsername());
-            operLog.setDeptName(loginUser.getDeptName());
+            LoginUser loginUser = UserContextHelper.getLoginUser();
+            if (loginUser != null) {
+                operLog.setOperName(loginUser.getUsername());
+                operLog.setDeptName(loginUser.getDeptName());
+            }
 
             if (e != null) {
                 operLog.setStatus(BusinessStatus.FAIL.ordinal());

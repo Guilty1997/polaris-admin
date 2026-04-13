@@ -1,6 +1,5 @@
 package com.polaris.common.mybatis.handler;
 
-import cn.dev33.satoken.exception.NotLoginException;
 import cn.hutool.http.HttpStatus;
 import com.baomidou.dynamic.datasource.exception.CannotFindDataSourceException;
 import com.polaris.common.core.domain.R;
@@ -37,7 +36,7 @@ public class MybatisExceptionHandler {
     public R<Void> handleCannotFindDataSourceException(MyBatisSystemException e, HttpServletRequest request) {
         String requestURI = request.getRequestURI();
         Throwable root = getRootCause(e);
-        if (root instanceof NotLoginException) {
+        if (isNotLoginException(root)) {
             log.error("请求地址'{}',认证失败'{}',无法访问系统资源", requestURI, root.getMessage());
             return R.fail(HttpStatus.HTTP_UNAUTHORIZED, "认证失败，无法访问系统资源");
         }
@@ -47,6 +46,14 @@ public class MybatisExceptionHandler {
         }
         log.error("请求地址'{}', Mybatis系统异常", requestURI, e);
         return R.fail(HttpStatus.HTTP_INTERNAL_ERROR, e.getMessage());
+    }
+
+    private static boolean isNotLoginException(Throwable t) {
+        if (t == null) {
+            return false;
+        }
+        // 避免 mybatis 模块对 Sa-Token 的编译期依赖
+        return "cn.dev33.satoken.exception.NotLoginException".equals(t.getClass().getName());
     }
 
     /**

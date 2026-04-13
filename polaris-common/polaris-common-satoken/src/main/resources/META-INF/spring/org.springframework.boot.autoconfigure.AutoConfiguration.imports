@@ -1,1 +1,2 @@
 com.polaris.common.satoken.config.SaTokenConfig
+com.polaris.common.satoken.config.UserContextWebConfig

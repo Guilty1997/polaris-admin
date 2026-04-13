@@ -18,6 +18,11 @@
             <artifactId>polaris-common-core</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.polaris</groupId>
+            <artifactId>polaris-common-context</artifactId>
+        </dependency>
+
         <!-- RuoYi Common Redis-->
         <dependency>
             <groupId>com.polaris</groupId>

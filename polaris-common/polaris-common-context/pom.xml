@@ -9,24 +9,19 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>polaris-common-log</artifactId>
+    <artifactId>polaris-common-context</artifactId>
 
     <description>
-        ruoyi-common-log 日志记录
+        ruoyi-common-context 用户/租户上下文模块
+        提供基于 ThreadLocal 的用户上下文，解耦持久层/日志层对 Sa-Token 的直接依赖
     </description>
 
     <dependencies>
-
         <dependency>
             <groupId>com.polaris</groupId>
-            <artifactId>polaris-common-context</artifactId>
+            <artifactId>polaris-common-core</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>com.polaris</groupId>
-            <artifactId>polaris-common-json</artifactId>
-        </dependency>
-
     </dependencies>
 
 </project>
+

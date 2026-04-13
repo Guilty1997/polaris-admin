@@ -27,6 +27,18 @@
             <artifactId>polaris-common-redis</artifactId>
         </dependency>
 
+        <!-- TenantSaTokenDao 继承 PlusSaTokenDao，实现多租户 Redis key 隔离，属于合理依赖 -->
+        <dependency>
+            <groupId>com.polaris</groupId>
+            <artifactId>polaris-common-satoken</artifactId>
+        </dependency>
+
+        <!-- TenantHelper 获取用户/租户上下文，通过 context 模块而非直接依赖 satoken -->
+        <dependency>
+            <groupId>com.polaris</groupId>
+            <artifactId>polaris-common-context</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

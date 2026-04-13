@@ -12,6 +12,7 @@
     <modules>
         <module>polaris-common-bom</module>
         <module>polaris-common-social</module>
+        <module>polaris-common-context</module>
         <module>polaris-common-core</module>
         <module>polaris-common-doc</module>
         <module>polaris-common-excel</module>

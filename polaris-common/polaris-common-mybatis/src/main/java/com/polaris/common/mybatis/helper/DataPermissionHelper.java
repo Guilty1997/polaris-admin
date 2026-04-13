@@ -1,15 +1,13 @@
 package com.polaris.common.mybatis.helper;
 
-import cn.dev33.satoken.context.SaHolder;
-import cn.dev33.satoken.context.model.SaStorage;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.plugins.IgnoreStrategy;
 import com.baomidou.mybatisplus.core.plugins.InterceptorIgnoreHelper;
-import com.polaris.common.core.utils.reflect.ReflectUtils;
-import com.polaris.common.mybatis.annotation.DataPermission;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import com.polaris.common.core.utils.reflect.ReflectUtils;
+import com.polaris.common.mybatis.annotation.DataPermission;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,12 +23,12 @@ import java.util.function.Supplier;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @SuppressWarnings("unchecked cast")
 public class DataPermissionHelper {
-
-    private static final String DATA_PERMISSION_KEY = "data:permission";
-
     private static final ThreadLocal<Stack<Integer>> REENTRANT_IGNORE = ThreadLocal.withInitial(Stack::new);
 
     private static final ThreadLocal<DataPermission> PERMISSION_CACHE = new ThreadLocal<>();
+
+    /** 替代 SaHolder.getStorage()，使用 ThreadLocal 存储请求级上下文 */
+    private static final ThreadLocal<Map<String, Object>> CONTEXT = ThreadLocal.withInitial(HashMap::new);
 
     /**
      * 获取当前执行mapper权限注解
@@ -55,6 +53,7 @@ public class DataPermissionHelper {
      */
     public static void removePermission() {
         PERMISSION_CACHE.remove();
+        clearContext();
     }
 
     /**
@@ -87,16 +86,15 @@ public class DataPermissionHelper {
      * @throws NullPointerException 如果数据权限上下文类型异常，则抛出NullPointerException
      */
     public static Map<String, Object> getContext() {
-        SaStorage saStorage = SaHolder.getStorage();
-        Object attribute = saStorage.get(DATA_PERMISSION_KEY);
-        if (ObjectUtil.isNull(attribute)) {
-            saStorage.set(DATA_PERMISSION_KEY, new HashMap<>());
-            attribute = saStorage.get(DATA_PERMISSION_KEY);
-        }
-        if (attribute instanceof Map map) {
-            return map;
-        }
-        throw new NullPointerException("data permission context type exception");
+        return CONTEXT.get();
+    }
+
+    /**
+     * 清理数据权限上下文，防止线程池复用时数据泄漏
+     * 应在请求结束时调用（可在 UserContextInterceptor.afterCompletion 中一并处理）
+     */
+    public static void clearContext() {
+        CONTEXT.remove();
     }
 
     private static IgnoreStrategy getIgnoreStrategy() {
@@ -141,7 +139,6 @@ public class DataPermissionHelper {
             } else if (empty) {
                 ignoreStrategy.setDataPermission(false);
             }
-
         }
     }
 

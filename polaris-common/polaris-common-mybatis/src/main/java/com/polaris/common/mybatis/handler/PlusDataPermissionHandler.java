@@ -2,6 +2,7 @@ package com.polaris.common.mybatis.handler;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
+import com.polaris.common.context.helper.UserContextHelper;
 import com.polaris.common.core.domain.dto.RoleDTO;
 import com.polaris.common.core.domain.model.LoginUser;
 import com.polaris.common.core.exception.ServiceException;
@@ -12,7 +13,6 @@ import com.polaris.common.mybatis.annotation.DataColumn;
 import com.polaris.common.mybatis.annotation.DataPermission;
 import com.polaris.common.mybatis.enums.DataScopeType;
 import com.polaris.common.mybatis.helper.DataPermissionHelper;
-import com.polaris.common.satoken.utils.LoginHelper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.jsqlparser.JSQLParserException;
@@ -51,8 +51,8 @@ public class PlusDataPermissionHandler {
     /**
      * 获取数据过滤条件的 SQL 片段
      *
-     * @param where    原始的查询条件表达式
-     * @param isSelect 是否为查询语句
+     * @param where             原始的查询条件表达式
+     * @param isSelect          是否为查询语句
      * @return 数据过滤条件的 SQL 片段
      */
     public Expression getSqlSegment(Expression where, boolean isSelect) {
@@ -62,11 +62,11 @@ public class PlusDataPermissionHandler {
             // 获取当前登录用户信息
             LoginUser currentUser = DataPermissionHelper.getVariable("user");
             if (ObjectUtil.isNull(currentUser)) {
-                currentUser = LoginHelper.getLoginUser();
+                currentUser = UserContextHelper.getLoginUser();
                 DataPermissionHelper.setVariable("user", currentUser);
             }
             // 如果是超级管理员或租户管理员，则不过滤数据
-            if (LoginHelper.isSuperAdmin() || LoginHelper.isTenantAdmin()) {
+            if (UserContextHelper.isSuperAdmin() || UserContextHelper.isTenantAdmin()) {
                 return where;
             }
             // 构造数据过滤条件的 SQL 片段

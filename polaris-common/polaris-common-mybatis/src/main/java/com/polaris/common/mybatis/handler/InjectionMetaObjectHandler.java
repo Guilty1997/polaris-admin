@@ -3,12 +3,12 @@ package com.polaris.common.mybatis.handler;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.http.HttpStatus;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
+import lombok.extern.slf4j.Slf4j;
+import com.polaris.common.context.helper.UserContextHelper;
 import com.polaris.common.core.domain.model.LoginUser;
 import com.polaris.common.core.exception.ServiceException;
 import com.polaris.common.core.utils.ObjectUtils;
 import com.polaris.common.mybatis.core.domain.BaseEntity;
-import com.polaris.common.satoken.utils.LoginHelper;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
 
 import java.util.Date;
@@ -81,7 +81,7 @@ public class InjectionMetaObjectHandler implements MetaObjectHandler {
                 baseEntity.setUpdateTime(current);
 
                 // 获取当前登录用户的ID，并填充更新人信息
-                Long userId = LoginHelper.getUserId();
+                Long userId = UserContextHelper.getUserId();
                 if (ObjectUtil.isNotNull(userId)) {
                     baseEntity.setUpdateBy(userId);
                 } else {
@@ -103,7 +103,7 @@ public class InjectionMetaObjectHandler implements MetaObjectHandler {
     private LoginUser getLoginUser() {
         LoginUser loginUser;
         try {
-            loginUser = LoginHelper.getLoginUser();
+            loginUser = UserContextHelper.getLoginUser();
         } catch (Exception e) {
             return null;
         }

@@ -23,7 +23,13 @@
 
         <dependency>
             <groupId>com.polaris</groupId>
-            <artifactId>polaris-common-satoken</artifactId>
+            <artifactId>polaris-common-context</artifactId>
+        </dependency>
+
+        <!-- Jackson 注解支持（BaseEntity / PageQuery 使用 @JsonIgnore 等） -->
+        <dependency>
+            <groupId>com.polaris</groupId>
+            <artifactId>polaris-common-json</artifactId>
         </dependency>
 
         <!-- dynamic-datasource 多数据源-->

@@ -26,6 +26,13 @@
                 <version>${revision}</version>
             </dependency>
 
+            <!-- 上下文模块 -->
+            <dependency>
+                <groupId>com.polaris</groupId>
+                <artifactId>polaris-common-context</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
             <!-- 接口模块 -->
             <dependency>
                 <groupId>com.polaris</groupId>

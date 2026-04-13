@@ -1,21 +1,22 @@
 package com.polaris.common.tenant.helper;
 
-import cn.dev33.satoken.context.SaHolder;
-import cn.dev33.satoken.context.model.SaStorage;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.plugins.IgnoreStrategy;
 import com.baomidou.mybatisplus.core.plugins.InterceptorIgnoreHelper;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import com.polaris.common.context.helper.UserContextHelper;
 import com.polaris.common.core.constant.GlobalConstants;
 import com.polaris.common.core.utils.SpringUtils;
 import com.polaris.common.core.utils.StringUtils;
 import com.polaris.common.core.utils.reflect.ReflectUtils;
 import com.polaris.common.redis.utils.RedisUtils;
-import com.polaris.common.satoken.utils.LoginHelper;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import java.util.Stack;
 import java.util.function.Supplier;
@@ -34,6 +35,9 @@ public class TenantHelper {
     private static final ThreadLocal<String> TEMP_DYNAMIC_TENANT = new ThreadLocal<>();
 
     private static final ThreadLocal<Stack<Integer>> REENTRANT_IGNORE = ThreadLocal.withInitial(Stack::new);
+
+    /** 替代 SaHolder.getStorage()，以请求级 ThreadLocal 缓存动态租户，避免重复查 Redis */
+    private static final ThreadLocal<Map<String, String>> DYNAMIC_TENANT_STORAGE = ThreadLocal.withInitial(HashMap::new);
 
     /**
      * 租户功能是否启用
@@ -131,13 +135,13 @@ public class TenantHelper {
         if (!isEnable()) {
             return;
         }
-        if (!LoginHelper.isLogin() || !global) {
+        if (!UserContextHelper.hasUser() || !global) {
             TEMP_DYNAMIC_TENANT.set(tenantId);
             return;
         }
-        String cacheKey = DYNAMIC_TENANT_KEY + ":" + LoginHelper.getUserId();
+        String cacheKey = DYNAMIC_TENANT_KEY + ":" + UserContextHelper.getUserId();
         RedisUtils.setCacheObject(cacheKey, tenantId);
-        SaHolder.getStorage().set(cacheKey, tenantId);
+        DYNAMIC_TENANT_STORAGE.get().put(cacheKey, tenantId);
     }
 
     /**
@@ -149,7 +153,7 @@ public class TenantHelper {
         if (!isEnable()) {
             return null;
         }
-        if (!LoginHelper.isLogin()) {
+        if (!UserContextHelper.hasUser()) {
             return TEMP_DYNAMIC_TENANT.get();
         }
         // 如果线程内有值 优先返回
@@ -157,15 +161,15 @@ public class TenantHelper {
         if (StringUtils.isNotBlank(tenantId)) {
             return tenantId;
         }
-        SaStorage storage = SaHolder.getStorage();
-        String cacheKey = DYNAMIC_TENANT_KEY + ":" + LoginHelper.getUserId();
-        tenantId = storage.getString(cacheKey);
+        String cacheKey = DYNAMIC_TENANT_KEY + ":" + UserContextHelper.getUserId();
+        Map<String, String> storage = DYNAMIC_TENANT_STORAGE.get();
+        tenantId = storage.get(cacheKey);
         // 如果为 -1 说明已经查过redis并且不存在值 则直接返回null
         if (StringUtils.isNotBlank(tenantId)) {
             return tenantId.equals("-1") ? null : tenantId;
         }
         tenantId = RedisUtils.getCacheObject(cacheKey);
-        storage.set(cacheKey, StringUtils.isBlank(tenantId) ? "-1" : tenantId);
+        storage.put(cacheKey, StringUtils.isBlank(tenantId) ? "-1" : tenantId);
         return tenantId;
     }
 
@@ -176,14 +180,24 @@ public class TenantHelper {
         if (!isEnable()) {
             return;
         }
-        if (!LoginHelper.isLogin()) {
+        if (!UserContextHelper.hasUser()) {
             TEMP_DYNAMIC_TENANT.remove();
             return;
         }
         TEMP_DYNAMIC_TENANT.remove();
-        String cacheKey = DYNAMIC_TENANT_KEY + ":" + LoginHelper.getUserId();
+        String cacheKey = DYNAMIC_TENANT_KEY + ":" + UserContextHelper.getUserId();
         RedisUtils.deleteObject(cacheKey);
-        SaHolder.getStorage().delete(cacheKey);
+        DYNAMIC_TENANT_STORAGE.get().remove(cacheKey);
+    }
+
+    /**
+     * 清理请求级动态租户缓存（ThreadLocal）
+     * 应在请求结束时调用，防止线程池复用时数据泄漏
+     * 通常由 UserContextInterceptor.afterCompletion 统一处理
+     */
+    public static void clearStorage() {
+        DYNAMIC_TENANT_STORAGE.remove();
+        TEMP_DYNAMIC_TENANT.remove();
     }
 
     /**
@@ -223,7 +237,7 @@ public class TenantHelper {
         }
         String tenantId = TenantHelper.getDynamic();
         if (StringUtils.isBlank(tenantId)) {
-            tenantId = LoginHelper.getTenantId();
+            tenantId = UserContextHelper.getTenantId();
         }
         return tenantId;
     }
