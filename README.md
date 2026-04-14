@@ -22,9 +22,7 @@
 - **Web**：Undertow、SpringDoc（OpenAPI）
 - **安全**：Sa-Token、多租户、数据权限等（与上游 Plus 体系一致）
 - **数据**：MyBatis-Plus、动态数据源、Redis（Redisson）等
-- **可选能力**：工作流（Warm Flow）、分布式任务（Snail Job）、代码生成、AI 扩展模块等
-
-更完整的演进与 AI 规划见仓库内 **[AI_APP_PLAN.md](./AI_APP_PLAN.md)**。
+- **可选能力**：工作流（Warm Flow）、分布式任务（Snail Job）、代码生成等
 
 ---
 
@@ -40,7 +38,7 @@ polaris-admin/
 │   ├── polaris-job/         # 定时任务
 │   ├── polaris-workflow/    # 工作流
 │   ├── polaris-demo/        # 示例
-│   └── polaris-ai/          # AI 相关扩展（见 AI_APP_PLAN.md）
+│   └── ...                  # 其它业务模块（按需扩展）
 ├── polaris-common/          # 公共组件（多子模块）
 └── script/                  # SQL 初始化与更新、Docker 等
 ```
@@ -78,7 +76,6 @@ polaris-admin/
 
 | 文档 | 说明 |
 | --- | --- |
-| [AI_APP_PLAN.md](./AI_APP_PLAN.md) | Polaris AI 能力规划与架构设想 |
 | [LICENSE](./LICENSE) | MIT 许可 |
 
 ---

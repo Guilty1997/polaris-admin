@@ -18,10 +18,10 @@
     <dependencies>
 
         <!-- Mysql驱动包 -->
-        <!--        <dependency>-->
-        <!--            <groupId>com.mysql</groupId>-->
-        <!--            <artifactId>mysql-connector-j</artifactId>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+        </dependency>
 
         <!--        &lt;!&ndash; mp支持的数据库均支持 只需要增加对应的jdbc依赖即可 &ndash;&gt;-->
         <!--        &lt;!&ndash; Oracle &ndash;&gt;-->
@@ -34,11 +34,6 @@
         <!--            <groupId>com.oracle.database.nls</groupId>-->
         <!--            <artifactId>orai18n</artifactId>-->
         <!--        </dependency>-->
-        <!-- PostgreSql -->
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-        </dependency>
         <!--        &lt;!&ndash; SqlServer &ndash;&gt;-->
         <!--        <dependency>-->
         <!--            <groupId>com.microsoft.sqlserver</groupId>-->
@@ -76,17 +71,6 @@
         <dependency>
             <groupId>com.polaris</groupId>
             <artifactId>polaris-workflow</artifactId>
-        </dependency>
-
-        <!--  AI模块  -->
-        <dependency>
-            <groupId>com.polaris</groupId>
-            <artifactId>polaris-ai</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
         </dependency>
 
         <dependency>

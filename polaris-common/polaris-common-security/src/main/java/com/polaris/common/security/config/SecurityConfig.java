@@ -1,14 +1,10 @@
 package com.polaris.common.security.config;
 
 import cn.dev33.satoken.exception.NotLoginException;
-import cn.dev33.satoken.filter.SaServletFilter;
-import cn.dev33.satoken.httpauth.basic.SaHttpBasicUtil;
 import cn.dev33.satoken.interceptor.SaInterceptor;
 import cn.dev33.satoken.router.SaRouter;
 import cn.dev33.satoken.stp.StpUtil;
-import cn.dev33.satoken.util.SaResult;
 import cn.dev33.satoken.util.SaTokenConsts;
-import com.polaris.common.core.constant.HttpStatus;
 import com.polaris.common.core.utils.ServletUtils;
 import com.polaris.common.core.utils.SpringUtils;
 import com.polaris.common.core.utils.StringUtils;
@@ -22,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -84,25 +79,6 @@ public class SecurityConfig implements WebMvcConfigurer {
             // 排除不需要拦截的路径
             .excludePathPatterns(securityProperties.getExcludes())
             .excludePathPatterns(ssePath);
-    }
-
-    /**
-     * 对 actuator 健康检查接口 做账号密码鉴权
-     */
-    @Bean
-    public SaServletFilter getSaServletFilter() {
-        String username = SpringUtils.getProperty("spring.boot.admin.client.username");
-        String password = SpringUtils.getProperty("spring.boot.admin.client.password");
-        return new SaServletFilter()
-            .addInclude("/actuator", "/actuator/**")
-            .setAuth(obj -> {
-                SaHttpBasicUtil.check(username + ":" + password);
-            })
-            .setError(e -> {
-                HttpServletResponse response = ServletUtils.getResponse();
-                response.setContentType(SaTokenConsts.CONTENT_TYPE_APPLICATION_JSON);
-                return SaResult.error(e.getMessage()).setCode(HttpStatus.UNAUTHORIZED);
-            });
     }
 
 }

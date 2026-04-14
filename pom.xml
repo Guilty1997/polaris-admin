@@ -27,7 +27,6 @@
         <mybatis-plus.version>3.5.14</mybatis-plus.version>
         <p6spy.version>3.9.1</p6spy.version>
         <hutool.version>5.8.40</hutool.version>
-        <spring-boot-admin.version>3.5.5</spring-boot-admin.version>
         <redisson.version>3.51.0</redisson.version>
         <lock4j.version>2.2.7</lock4j.version>
         <dynamic-ds.version>4.3.1</dynamic-ds.version>
@@ -49,7 +48,6 @@
         <anyline.version>8.7.2-20250603</anyline.version>
         <!-- 工作流配置 -->
         <warm-flow.version>1.8.2</warm-flow.version>
-        <langchain4j.version>0.36.0</langchain4j.version>
 
         <!-- 插件版本 -->
         <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
@@ -68,8 +66,6 @@
                 <!-- 环境标识，需要与配置文件的名称相对应 -->
                 <profiles.active>local</profiles.active>
                 <logging.level>info</logging.level>
-                <monitor.username>ruoyi</monitor.username>
-                <monitor.password>123456</monitor.password>
             </properties>
         </profile>
         <profile>
@@ -78,8 +74,6 @@
                 <!-- 环境标识，需要与配置文件的名称相对应 -->
                 <profiles.active>dev</profiles.active>
                 <logging.level>info</logging.level>
-                <monitor.username>ruoyi</monitor.username>
-                <monitor.password>123456</monitor.password>
             </properties>
             <activation>
                 <!-- 默认环境 -->
@@ -91,8 +85,6 @@
             <properties>
                 <profiles.active>prod</profiles.active>
                 <logging.level>warn</logging.level>
-                <monitor.username>ruoyi</monitor.username>
-                <monitor.password>123456</monitor.password>
             </properties>
         </profile>
     </profiles>
@@ -150,24 +142,6 @@
                 <groupId>cn.idev.excel</groupId>
                 <artifactId>fastexcel</artifactId>
                 <version>${fastexcel.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>dev.langchain4j</groupId>
-                <artifactId>langchain4j-spring-boot-starter</artifactId>
-                <version>${langchain4j.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>dev.langchain4j</groupId>
-                <artifactId>langchain4j-open-ai</artifactId>
-                <version>${langchain4j.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>dev.langchain4j</groupId>
-                <artifactId>langchain4j-pgvector</artifactId>
-                <version>${langchain4j.version}</version>
             </dependency>
 
             <!-- velocity代码生成使用模板 -->
@@ -262,17 +236,6 @@
                 <groupId>org.dromara.sms4j</groupId>
                 <artifactId>sms4j-spring-boot-starter</artifactId>
                 <version>${sms4j.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>de.codecentric</groupId>
-                <artifactId>spring-boot-admin-starter-server</artifactId>
-                <version>${spring-boot-admin.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>de.codecentric</groupId>
-                <artifactId>spring-boot-admin-starter-client</artifactId>
-                <version>${spring-boot-admin.version}</version>
             </dependency>
 
             <!--redisson-->
@@ -372,12 +335,6 @@
             <dependency>
                 <groupId>com.polaris</groupId>
                 <artifactId>polaris-demo</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.polaris</groupId>
-                <artifactId>polaris-ai</artifactId>
                 <version>${revision}</version>
             </dependency>
 

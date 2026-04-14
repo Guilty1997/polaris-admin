@@ -1,16 +1,3 @@
---- # 监控中心配置
-spring.boot.admin.client:
-  # 增加客户端开关
-  enabled: true
-  url: http://localhost:9090/admin
-  instance:
-    service-host-type: IP
-    metadata:
-      username: ${spring.boot.admin.client.username}
-      userpassword: ${spring.boot.admin.client.password}
-  username: @monitor.username@
-  password: @monitor.password@
-
 --- # snail-job 配置
 snail-job:
   enabled: true
@@ -44,10 +31,10 @@ spring:
         # 主库数据源
         master:
           type: ${spring.datasource.type}
-          driverClassName: org.postgresql.Driver
+          driverClassName: com.mysql.cj.jdbc.Driver
           # jdbc 所有参数配置参考 https://lionli.blog.csdn.net/article/details/122018562
           # reWriteBatchedInserts=true 批处理优化 大幅提升批量插入更新删除性能(对数据库有性能损耗 使用批量操作应考虑性能问题)
-          url: jdbc:postgresql://localhost:5432/polaris_admin?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&reWriteBatchedInserts=true
+          url: jdbc:mysql://localhost:3306/polaris_admin?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8&autoReconnect=true&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true
           username: polaris_admin
           password: polaris_admin
       #        # 从库数据源
@@ -270,20 +257,4 @@ justauth:
       redirect-uri: ${justauth.address}/social-callback?source=gitea
 
 
---- # AI 本地配置覆盖
-ai:
-  moonshot:
-    api-key: ${AI_MOONSHOT_API_KEY:xxxxxx}
-    embedding:
-      api-key: ${AI_MOONSHOT_EMBEDDING_API_KEY:xxxxx}
-  pgvector:
-    enabled: true
-    host: 127.0.0.1
-    port: 5432
-    database: polaris_admin
-    username: polaris_admin
-    password: polaris_admin
-    schema: public
-    table: ai_embeddings
-    dimension: 1536
 
