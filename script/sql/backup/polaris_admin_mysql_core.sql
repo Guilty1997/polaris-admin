@@ -84,8 +84,8 @@ create table sys_tenant_package
     menu_ids            varchar(3000) comment '关联菜单id',
     remark              varchar(200) comment '备注',
     menu_check_strictly tinyint(1) default 1 comment '菜单树选择项是否关联显示',
-    status              char(1)    default '0' comment '状态（0正常 1停用）',
-    del_flag            char(1)    default '0' comment '删除标志（0代表存在 1代表删除）',
+    status              char(1) default '0' comment '状态（0正常 1停用）',
+    del_flag            char(1) default '0' comment '删除标志（0代表存在 1代表删除）',
     create_dept         bigint(20) comment '创建部门',
     create_by           bigint(20) comment '创建者',
     create_time         datetime comment '创建时间',
@@ -1012,9 +1012,9 @@ create table sys_oper_log
     oper_time      datetime comment '操作时间',
     cost_time      bigint(20)    default 0 comment '消耗时间',
     primary key (oper_id),
-    key idx_sys_oper_log_bt (business_type),
-    key idx_sys_oper_log_s (status),
-    key idx_sys_oper_log_ot (oper_time)
+    key            idx_sys_oper_log_bt (business_type),
+    key            idx_sys_oper_log_s (status),
+    key            idx_sys_oper_log_ot (oper_time)
 ) engine = innodb comment = '操作日志记录';
 
 
@@ -1222,8 +1222,8 @@ create table sys_logininfor
     msg            varchar(255) default '' comment '提示消息',
     login_time     datetime comment '访问时间',
     primary key (info_id),
-    key idx_sys_logininfor_s (status),
-    key idx_sys_logininfor_lt (login_time)
+    key            idx_sys_logininfor_s (status),
+    key            idx_sys_logininfor_lt (login_time)
 ) engine = innodb comment = '系统访问记录';
 
 
@@ -1419,7 +1419,7 @@ values (2, '428a8310cd442757ae699df5d894f051', 'app', 'app123', 'password,sms,so
 CREATE TABLE test_demo
 (
     id          bigint(0)    NOT NULL COMMENT '主键',
-    tenant_id   varchar(20)  NULL DEFAULT '000000' COMMENT '租户编号',
+    tenant_id   varchar(20) NULL DEFAULT '000000' COMMENT '租户编号',
     dept_id     bigint(0)    NULL DEFAULT NULL COMMENT '部门id',
     user_id     bigint(0)    NULL DEFAULT NULL COMMENT '用户id',
     order_num   int(0)       NULL DEFAULT 0 COMMENT '排序号',
@@ -1438,7 +1438,7 @@ CREATE TABLE test_demo
 CREATE TABLE test_tree
 (
     id          bigint(0)    NOT NULL COMMENT '主键',
-    tenant_id   varchar(20)  NULL DEFAULT '000000' COMMENT '租户编号',
+    tenant_id   varchar(20) NULL DEFAULT '000000' COMMENT '租户编号',
     parent_id   bigint(0)    NULL DEFAULT 0 COMMENT '父id',
     dept_id     bigint(0)    NULL DEFAULT NULL COMMENT '部门id',
     user_id     bigint(0)    NULL DEFAULT NULL COMMENT '用户id',

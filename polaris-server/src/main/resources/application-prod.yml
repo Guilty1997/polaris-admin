@@ -9,8 +9,8 @@ snail-job:
   # SnailJob 接入验证令牌 详见 script/sql/ry_job.sql `sj_group_config`表
   token: "SJ_cKqBTPzCsWA3VyuCfFoccmuIEGXjr5KT"
   server:
-    host: 127.0.0.1
-    port: 17888
+    host: ${SNAIL_SERVER_HOST:127.0.0.1}
+    port: ${SNAIL_SERVER_PORT:17888}
   # 命名空间UUID 详见 script/sql/ry_job.sql `sj_namespace`表`unique_id`字段
   namespace: ${spring.profiles.active}
   # 随主应用端口漂移
@@ -37,9 +37,9 @@ spring:
           driverClassName: com.mysql.cj.jdbc.Driver
           # jdbc 所有参数配置参考 https://lionli.blog.csdn.net/article/details/122018562
           # reWriteBatchedInserts=true 批处理优化 大幅提升批量插入更新删除性能(对数据库有性能损耗 使用批量操作应考虑性能问题)
-          url: jdbc:mysql://localhost:3306/polaris_admin?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8&autoReconnect=true&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true
-          username: polaris_admin
-          password: polaris_admin
+          url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:polaris_admin}?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=${DB_USE_SSL:false}&serverTimezone=${DB_TIMEZONE:GMT%2B8}&autoReconnect=true&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true
+          username: ${DB_USER:polaris_admin}
+          password: ${DB_PASSWORD:polaris_admin}
       #        # 从库数据源
       #        slave:
       #          lazy: true
@@ -86,13 +86,13 @@ spring:
 spring.data:
   redis:
     # 地址
-    host: localhost
+    host: ${REDIS_HOST:localhost}
     # 端口，默认为6379
-    port: 6379
+    port: ${REDIS_PORT:6379}
     # 数据库索引
-    database: 0
+    database: ${REDIS_DB:0}
     # redis 密码必须配置（当前 Redis 未设置密码，如需密码请取消注释并配置）
-    #    password: ruoyi123
+    #    password: ${REDIS_PASSWORD:}
     # 连接超时时间
     timeout: 10s
     # 是否开启ssl
