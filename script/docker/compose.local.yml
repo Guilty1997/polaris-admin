@@ -2,7 +2,7 @@ name: polaris-local
 
 services:
   mysql:
-    image: mysql:8.4
+    image: mysql:8.0.33
     container_name: polaris-mysql
     restart: unless-stopped
     environment:
@@ -19,7 +19,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./volumes/mysql/data:/var/lib/mysql
+      - polaris_mysql_data:/var/lib/mysql
       - ../sql:/opt/polaris-sql:ro
       - ../sql/compose-init:/docker-entrypoint-initdb.d:ro
     healthcheck:
@@ -29,7 +29,7 @@ services:
       retries: 10
 
   redis:
-    image: redis:7.2
+    image: redis:6.2
     container_name: polaris-redis
     restart: unless-stopped
     environment:
@@ -37,7 +37,7 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - ./volumes/redis/data:/data
+      - polaris_redis_data:/data
     command: ["redis-server", "--appendonly", "yes"]
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
@@ -46,7 +46,7 @@ services:
       retries: 10
 
   minio:
-    image: minio/minio:RELEASE.2025-04-22T22-12-26Z
+    image: minio/minio
     container_name: polaris-minio
     restart: unless-stopped
     environment:
@@ -58,5 +58,11 @@ services:
       - "9000:9000"
       - "9001:9001"
     volumes:
-      - ./volumes/minio/data:/data
-      - ./volumes/minio/config:/root/.minio
+      - polaris_minio_data:/data
+      - polaris_minio_config:/root/.minio
+
+volumes:
+  polaris_mysql_data:
+  polaris_redis_data:
+  polaris_minio_data:
+  polaris_minio_config:
