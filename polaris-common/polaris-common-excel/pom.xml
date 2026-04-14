@@ -18,6 +18,11 @@
     <dependencies>
         <dependency>
             <groupId>com.polaris</groupId>
+            <artifactId>polaris-common-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.polaris</groupId>
             <artifactId>polaris-common-json</artifactId>
         </dependency>
 

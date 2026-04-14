@@ -17,6 +17,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.polaris</groupId>
+            <artifactId>polaris-common-core</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>me.zhyd.oauth</groupId>
             <artifactId>JustAuth</artifactId>
         </dependency>
